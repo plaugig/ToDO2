@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.ActivityMainBinding
 import com.plaugig.todo2.ui.days.DaysAdapter
+import com.plaugig.todo2.ui.days.DaysItemDecoration
 import com.plaugig.todo2.ui.days.item.DayItemState
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = DaysAdapter()
 
         binding.days.adapter = adapter
+        binding.days.addItemDecoration(DaysItemDecoration(this))
 
         adapter.days = listOf(
             DayItemState(
