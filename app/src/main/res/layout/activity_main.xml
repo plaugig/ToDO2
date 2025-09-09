@@ -11,26 +11,34 @@
         android:id="@+id/days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="horizontal"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/days"
-        app:layout_constraintStart_toStartOf="parent"
         android:textSize="24sp"
-        tools:text="Today"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/days"
+        tools:text="Today" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset_s"
-        app:layout_constraintTop_toBottomOf="@id/day"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Wed Sep 26"/>
+        app:layout_constraintTop_toBottomOf="@id/day"
+        tools:text="Wed Sep 26" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
