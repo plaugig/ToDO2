@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="task_color_false">#CCE5FF</color>
+    <color name="task_color_true">#54A7FF</color>
+    <color name="day_color">#E3F4FF</color>
+    <color name="ressed_day">#54A7FF</color>
 </resources>

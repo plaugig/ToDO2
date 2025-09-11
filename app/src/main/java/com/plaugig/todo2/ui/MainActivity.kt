@@ -57,9 +57,30 @@ class MainActivity : AppCompatActivity() {
                 id = 5,
                 nameOfDay = "Fri",
                 numberOfDay = "29"
+            ),DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
             ),
         )
-        val adapterTask = TaskAdapter()
+
+        lateinit  var adapterTask : TaskAdapter
+         adapterTask = TaskAdapter { task, position ->
+            val updatedTask = task.copy(isDone = !task.isDone)
+            adapterTask.updateTask(position, updatedTask)
+        }
 
         binding.task.adapter = adapterTask
         binding.task.addItemDecoration(TaskItemDecoration(this))
@@ -87,47 +108,7 @@ class MainActivity : AppCompatActivity() {
                 1,
                 getString(R.string.name_text) ,
                 getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),TaskItemData(
-                1,
-                getString(R.string.name_text) ,
-                getString(R.string.text_task)
-            ),
+            )
         )
 
 
