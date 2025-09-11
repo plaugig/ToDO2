@@ -3,4 +3,6 @@
     <dimen name="offset_s">4dp</dimen>
     <dimen name="offset_m">8dp</dimen>
     <dimen name="offset_l">16dp</dimen>
+    <dimen name="offset_bottom">16dp</dimen>
+    <dimen name="offset_top">24dp</dimen>
 </resources>

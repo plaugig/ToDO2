@@ -11,6 +11,7 @@ import com.plaugig.todo2.ui.days.DaysAdapter
 import com.plaugig.todo2.ui.days.DaysItemDecoration
 import com.plaugig.todo2.ui.days.item.DayItemState
 import com.plaugig.todo2.ui.task.TaskAdapter
+import com.plaugig.todo2.ui.task.TaskItemDecoration
 import com.plaugig.todo2.ui.task.item.TaskItemData
 
 class MainActivity : AppCompatActivity() {
@@ -61,8 +62,68 @@ class MainActivity : AppCompatActivity() {
         val adapterTask = TaskAdapter()
 
         binding.task.adapter = adapterTask
+        binding.task.addItemDecoration(TaskItemDecoration(this))
         adapterTask.task = listOf(
             TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),
+            TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),
+            TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),
+            TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
+                1,
+                getString(R.string.name_text) ,
+                getString(R.string.text_task)
+            ),TaskItemData(
                 1,
                 getString(R.string.name_text) ,
                 getString(R.string.text_task)
