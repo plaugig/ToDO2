@@ -53,6 +53,7 @@
             app:layout_constraintTop_toBottomOf="@id/name_task"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
              />
 
 

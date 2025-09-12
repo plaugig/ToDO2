@@ -1,11 +1,11 @@
 package com.plaugig.todo2.ui.task.item
 
+import android.graphics.Paint
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.TaskItemBinding
-import com.plaugig.todo2.ui.days.item.DayItemState
 
 class TaskViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -34,6 +34,13 @@ class TaskViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
                 }
             )
         )
+
+        if (state.isDone){
+            binding.textTask.paintFlags = binding.textTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        }
+        else {
+            binding.textTask.paintFlags = binding.textTask.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+        }
     }
 
     fun bind (state: TaskItemData, payload: Any?){
