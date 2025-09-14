@@ -10,16 +10,6 @@ class TaskDiffUtil(
     override fun getOldListSize(): Int = oldItem.size
     override fun getNewListSize(): Int = newItem.size
 
-    override fun areContentsTheSame(
-        oldItemPosition: Int,
-        newItemPosition: Int
-    ): Boolean {
-        val oldItem = oldItem[oldItemPosition]
-        val newItem = newItem[oldItemPosition]
-
-        return oldItem.id == newItem.id
-    }
-
     override fun areItemsTheSame(
         oldItemPosition: Int,
         newItemPosition: Int
@@ -27,8 +17,19 @@ class TaskDiffUtil(
         val oldItem = oldItem[oldItemPosition]
         val newItem = newItem[newItemPosition]
 
-        return oldItem.name == newItem.name
-                && oldItem.text == newItem.text
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(
+        oldItemPosition: Int,
+        newItemPosition: Int
+    ): Boolean {
+        val oldItem = oldItem[oldItemPosition]
+        val newItem = newItem[newItemPosition]
+
+        return oldItem.nameRes == newItem.nameRes
+                && oldItem.textRes == newItem.textRes
+                && oldItem.isDone == newItem.isDone
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
@@ -36,9 +37,9 @@ class TaskDiffUtil(
         val newItem = newItem[newItemPosition]
 
         return TaskItemStatePayload (
-            isNameChanged = oldItem.name != newItem.name,
-            isTextChanged = oldItem.text != newItem.text
+            isNameChanged = oldItem.nameRes != newItem.nameRes,
+            isTextChanged = oldItem.textRes != newItem.textRes,
+            isDoneStateChanged = oldItem.isDone != newItem.isDone
         )
     }
-
 }

@@ -11,7 +11,7 @@ import com.plaugig.todo2.ui.task.item.TaskItemData
 import com.plaugig.todo2.ui.task.item.TaskViewHolder
 
 class TaskAdapter(
-    val onTaskClick : (TaskItemData, Int) -> Unit
+    val onTaskClick : (TaskItemData) -> Unit
 ) : RecyclerView.Adapter<TaskViewHolder>() {
 
     var task: List<TaskItemData> = emptyList()
@@ -32,7 +32,7 @@ class TaskAdapter(
             false
         )
 
-        return TaskViewHolder(itemView)
+        return TaskViewHolder(itemView, onTaskClick)
     }
 
 
@@ -40,12 +40,7 @@ class TaskAdapter(
         holder: TaskViewHolder,
         position: Int
     ) {
-        val taskItem = task[position]
-        holder.bind(taskItem)
-
-        holder.itemView.setOnClickListener {
-            onTaskClick(taskItem , position)
-        }
+        holder.bind(task[position])
     }
 
     override fun onBindViewHolder(
@@ -56,21 +51,11 @@ class TaskAdapter(
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
         } else {
-            val taskState = task[position]
-
             payloads.forEach { payload ->
-                holder.bind(taskState, payload)
+                holder.bind(task[position], payload)
             }
         }
     }
 
     override fun getItemCount(): Int = task.size
-
-    fun updateTask (position: Int , taskNew : TaskItemData){
-        val newTask = task.toMutableList()
-        newTask[position] = taskNew
-        task = newTask
-        notifyItemChanged(position)
-
-    }
 }

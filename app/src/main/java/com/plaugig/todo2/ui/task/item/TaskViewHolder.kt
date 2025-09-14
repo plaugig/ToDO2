@@ -7,13 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.TaskItemBinding
 
-class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TaskViewHolder(
+	itemView: View,
+	val onTaskClick : (TaskItemData) -> Unit
+) : RecyclerView.ViewHolder(itemView) {
 
 	private var binding = TaskItemBinding.bind(itemView)
 
 	fun bind(state: TaskItemData) {
-		binding.nameTask.text = state.name
-		binding.textTask.text = state.text
+		binding.nameTask.text = itemView.resources.getString(state.nameRes)
+		binding.textTask.text = itemView.resources.getString(state.textRes)
 
 		binding.checkbox.setImageResource(
 			if (state.isDone) {
@@ -40,16 +43,53 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 			binding.textTask.paintFlags =
 				binding.textTask.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
 		}
+
+		setClickListener(state)
 	}
 
 	fun bind(state: TaskItemData, payload: Any?) {
 		payload as TaskItemStatePayload
 
 		if (payload.isNameChanged) {
-			binding.nameTask.text = state.name
+            itemView.resources.getString(state.nameRes)
 		}
 		if (payload.isTextChanged) {
-			binding.textTask.text = state.text
+            itemView.resources.getString(state.textRes)
+		}
+		if (payload.isDoneStateChanged) {
+			binding.checkbox.setImageResource(
+				if (state.isDone) {
+					R.drawable.ic_checked_box
+				} else {
+					R.drawable.check_box_task
+				}
+			)
+
+			binding.root.setCardBackgroundColor(
+				ContextCompat.getColor(
+					binding.root.context,
+					if (state.isDone) {
+						R.color.task_color_true
+					} else {
+						R.color.task_color_false
+					}
+				)
+			)
+
+			if (state.isDone) {
+				binding.textTask.paintFlags = binding.textTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+			} else {
+				binding.textTask.paintFlags =
+					binding.textTask.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+			}
+
+			setClickListener(state)
+		}
+	}
+
+	private fun setClickListener(state: TaskItemData) {
+		binding.checkbox.setOnClickListener {
+			onTaskClick(state)
 		}
 	}
 }
