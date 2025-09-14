@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
+import com.plaugig.todo2.ui.MainEventListener
 import com.plaugig.todo2.ui.task.item.TaskDiffUtil
 import com.plaugig.todo2.ui.task.item.TaskItemData
 import com.plaugig.todo2.ui.task.item.TaskViewHolder
 
 class TaskAdapter(
-    val onTaskClick : (TaskItemData) -> Unit
+    private val listener: MainEventListener
 ) : RecyclerView.Adapter<TaskViewHolder>() {
 
     var task: List<TaskItemData> = emptyList()
@@ -32,7 +33,7 @@ class TaskAdapter(
             false
         )
 
-        return TaskViewHolder(itemView, onTaskClick)
+        return TaskViewHolder(itemView, listener)
     }
 
 

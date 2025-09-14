@@ -2,6 +2,7 @@ package com.plaugig.todo2.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,52 +13,32 @@ import com.plaugig.todo2.ui.days.DaysItemDecoration
 import com.plaugig.todo2.ui.days.item.DayItemState
 import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
-import com.plaugig.todo2.ui.task.item.TaskItemData
 
 class MainActivity : AppCompatActivity() {
 
 	private var _binding: ActivityMainBinding? = null
 	private val binding: ActivityMainBinding get() = _binding!!
 
+	private val viewModel: MainViewModel by viewModels()
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		enableEdgeToEdge()
 
-		val data = mutableListOf(
-			TaskItemData(
-				id = 0,
-				nameRes = R.string.name_text,
-				textRes = R.string.text_task,
-				isDone = false
-			),
-			TaskItemData(
-				id = 1,
-				nameRes = R.string.name_text,
-				textRes = R.string.text_task,
-				isDone = false
-			),
-			TaskItemData(
-				id = 2,
-				nameRes = R.string.name_text,
-				textRes = R.string.text_task,
-				isDone = false
-			),
-			TaskItemData(
-				id = 3,
-				nameRes = R.string.name_text,
-				textRes = R.string.text_task,
-				isDone = false
-			)
-		)
-
 		_binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
 		val adapterDay = DaysAdapter()
+		val taskAdapter = TaskAdapter(
+			listener = viewModel
+		)
 
 		binding.days.adapter = adapterDay
+		binding.task.adapter = taskAdapter
+
 		binding.days.addItemDecoration(DaysItemDecoration(this))
+		binding.task.addItemDecoration(TaskItemDecoration(this))
 
 		adapterDay.days = listOf(
 			DayItemState(
@@ -107,21 +88,9 @@ class MainActivity : AppCompatActivity() {
 			),
 		)
 
-		lateinit var adapterTask: TaskAdapter
-		adapterTask = TaskAdapter { task ->
-            data.remove(task)
-            data.add(
-                task.copy(isDone = !task.isDone)
-            )
-
-			print(adapterTask.task)
-
-			adapterTask.task = data
+		viewModel.tasks.observe(this) { tasks ->
+			taskAdapter.task = tasks
 		}
-
-		binding.task.adapter = adapterTask
-		binding.task.addItemDecoration(TaskItemDecoration(this))
-		adapterTask.task = data
 
 
 		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

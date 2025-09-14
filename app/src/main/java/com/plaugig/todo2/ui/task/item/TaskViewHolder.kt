@@ -6,10 +6,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.TaskItemBinding
+import com.plaugig.todo2.ui.MainEventListener
 
 class TaskViewHolder(
 	itemView: View,
-	val onTaskClick : (TaskItemData) -> Unit
+	private val listener: MainEventListener
 ) : RecyclerView.ViewHolder(itemView) {
 
 	private var binding = TaskItemBinding.bind(itemView)
@@ -89,7 +90,11 @@ class TaskViewHolder(
 
 	private fun setClickListener(state: TaskItemData) {
 		binding.checkbox.setOnClickListener {
-			onTaskClick(state)
+			listener.onTaskDone(state.id, state.isDone)
+		}
+
+		binding.root.setOnClickListener {
+			listener.onOpenTask(state.id)
 		}
 	}
 }
