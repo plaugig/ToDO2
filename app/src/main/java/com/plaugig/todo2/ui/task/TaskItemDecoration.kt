@@ -8,8 +8,8 @@ import com.plaugig.todo2.R
 
 class TaskItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
-    private val offsetT = context.resources.getDimension(R.dimen.offset_top).toInt()
-    private val offsetB = context.resources.getDimension(R.dimen.offset_bottom).toInt()
+    private val offsetT = context.resources.getDimension(R.dimen.offset_xl).toInt()
+    private val offsetB = context.resources.getDimension(R.dimen.offset_l).toInt()
 
     override fun getItemOffsets(
         outRect: Rect,

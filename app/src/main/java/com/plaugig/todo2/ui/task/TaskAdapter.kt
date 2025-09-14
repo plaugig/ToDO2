@@ -14,7 +14,6 @@ class TaskAdapter(
     val onTaskClick : (TaskItemData, Int) -> Unit
 ) : RecyclerView.Adapter<TaskViewHolder>() {
 
-
     var task: List<TaskItemData> = emptyList()
         set(value) {
             val callback = TaskDiffUtil(field, value)
@@ -44,11 +43,9 @@ class TaskAdapter(
         val taskItem = task[position]
         holder.bind(taskItem)
 
-
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onTaskClick(taskItem , position)
         }
-
     }
 
     override fun onBindViewHolder(
@@ -65,10 +62,7 @@ class TaskAdapter(
                 holder.bind(taskState, payload)
             }
         }
-
-
     }
-
 
     override fun getItemCount(): Int = task.size
 

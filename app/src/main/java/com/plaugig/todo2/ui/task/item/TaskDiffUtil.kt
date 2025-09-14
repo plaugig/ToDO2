@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DiffUtil
 class TaskDiffUtil(
     val oldItem: List<TaskItemData>,
     val newItem: List<TaskItemData>
-
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldItem.size
@@ -30,17 +29,15 @@ class TaskDiffUtil(
 
         return oldItem.name == newItem.name
                 && oldItem.text == newItem.text
-
     }
 
-    override fun getChangePayload(oldItemPosition: Int,
-                                  newItemPosition: Int): Any? {
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
         val oldItem = oldItem[oldItemPosition]
         val newItem = newItem[newItemPosition]
 
         return TaskItemStatePayload (
-            isName_task = oldItem.name != newItem.name,
-            isText_task = oldItem.text != newItem.text
+            isNameChanged = oldItem.name != newItem.name,
+            isTextChanged = oldItem.text != newItem.text
         )
     }
 

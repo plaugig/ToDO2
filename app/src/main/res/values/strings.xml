@@ -1,14 +1,5 @@
 <resources>
     <string name="app_name">ToDO2</string>
-    <string name="name_text">"卍We all love Adolf Hitler 卍"</string>
-    <string name="text_task">"卍卍卍 Grandpa, why are you driving 200 km/h?"
-"To your grandmother's house, my boy."
-"But Grandpa, she's dead..." 卍卍卍
-
-卍 A family of cannibals had a relative pass away. It was sad and delicious. 卍
-
-卍卍I was digging a hole in the garden when I
-        suddenly unearthed a whole chest of gold.
-        I was just about to run home to tell my wife about the valuable find.
-        Then I remembered why I was digging the hole in the first place. 卍卍</string>
+    <string name="name_text">Learn english</string>
+    <string name="text_task">Test text, test text, test text, test text, test text, test text, test text, test text, test text, test text, test text, test text</string>
 </resources>

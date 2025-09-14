@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             ),
         )
 
-        lateinit  var adapterTask : TaskAdapter
+        lateinit var adapterTask : TaskAdapter
          adapterTask = TaskAdapter { task, position ->
             val updatedTask = task.copy(isDone = !task.isDone)
             adapterTask.updateTask(position, updatedTask)
@@ -104,7 +104,8 @@ class MainActivity : AppCompatActivity() {
                 1,
                 getString(R.string.name_text) ,
                 getString(R.string.text_task)
-            ),TaskItemData(
+            ),
+            TaskItemData(
                 1,
                 getString(R.string.name_text) ,
                 getString(R.string.text_task)
