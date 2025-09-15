@@ -10,7 +10,6 @@ import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.ActivityMainBinding
 import com.plaugig.todo2.ui.days.DaysAdapter
 import com.plaugig.todo2.ui.days.DaysItemDecoration
-import com.plaugig.todo2.ui.days.item.DayItemState
 import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
 
@@ -40,56 +39,13 @@ class MainActivity : AppCompatActivity() {
 		binding.days.addItemDecoration(DaysItemDecoration(this))
 		binding.task.addItemDecoration(TaskItemDecoration(this))
 
-		adapterDay.days = listOf(
-			DayItemState(
-				id = 1,
-				nameOfDay = "Mon",
-				numberOfDay = "25"
-			),
-			DayItemState(
-				id = 2,
-				nameOfDay = "Tue",
-				numberOfDay = "26"
-			),
-			DayItemState(
-				id = 3,
-				nameOfDay = "Wed",
-				numberOfDay = "27"
-			),
-			DayItemState(
-				id = 4,
-				nameOfDay = "Thu",
-				numberOfDay = "28"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-		)
 
 		viewModel.tasks.observe(this) { tasks ->
 			taskAdapter.task = tasks
+		}
+
+		viewModel.days.observe(this) { days ->
+			adapterDay.days = days
 		}
 
 
