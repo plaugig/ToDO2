@@ -10,6 +10,7 @@ import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.ActivityMainBinding
 import com.plaugig.todo2.ui.days.DaysAdapter
 import com.plaugig.todo2.ui.days.DaysItemDecoration
+import com.plaugig.todo2.ui.task.SwipeDeliteTask
 import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
 
@@ -34,10 +35,10 @@ class MainActivity : AppCompatActivity() {
 		)
 
 		binding.days.adapter = adapterDay
-		binding.task.adapter = taskAdapter
+		binding.taskRecV.adapter = taskAdapter
 
 		binding.days.addItemDecoration(DaysItemDecoration(this))
-		binding.task.addItemDecoration(TaskItemDecoration(this))
+		binding.taskRecV.addItemDecoration(TaskItemDecoration(this))
 
 
 		viewModel.tasks.observe(this) { tasks ->
@@ -54,5 +55,7 @@ class MainActivity : AppCompatActivity() {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 			insets
 		}
+
+
 	}
 }

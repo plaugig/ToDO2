@@ -97,4 +97,6 @@ class TaskViewHolder(
 			listener.onOpenTask(state.id)
 		}
 	}
+
+	
 }

@@ -6,4 +6,5 @@
     <color name="task_color_true">#54A7FF</color>
     <color name="day_color">#E3F4FF</color>
     <color name="ressed_day">#54A7FF</color>
+    <color name="red">#fc0303</color>
 </resources>
