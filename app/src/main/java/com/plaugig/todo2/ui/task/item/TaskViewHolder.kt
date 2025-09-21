@@ -15,7 +15,12 @@ class TaskViewHolder(
 
 	private var binding = TaskItemBinding.bind(itemView)
 
+	private var id: Int? = null
+
+
 	fun bind(state: TaskItemData) {
+		id = state.id
+
 		binding.nameTask.text = itemView.resources.getString(state.nameRes)
 		binding.textTask.text = itemView.resources.getString(state.textRes)
 
@@ -98,5 +103,9 @@ class TaskViewHolder(
 		}
 	}
 
-	
+	fun onDelete() {
+		id?.let {
+			listener.onDeleteTask(it)
+		}
+	}
 }

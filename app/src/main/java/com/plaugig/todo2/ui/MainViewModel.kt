@@ -100,8 +100,9 @@ class MainViewModel : ViewModel(), MainEventListener {
     }
 
     override fun onDeleteTask(id: Int) {
-        _tasks.value = _tasks.value?.filter { it.id != id }
-
+        _tasks.postValue(
+            tasks.value?.filter { it.id != id }
+        )
     }
 
     override fun onTaskDone(id: Int, isDone: Boolean) {
