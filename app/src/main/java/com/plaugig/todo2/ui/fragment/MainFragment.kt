@@ -1,0 +1,84 @@
+package com.plaugig.todo2.ui.fragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.plaugig.todo2.R
+import com.plaugig.todo2.databinding.FragmentMainBinding
+import com.plaugig.todo2.ui.MainViewModel
+import com.plaugig.todo2.ui.days.DaysAdapter
+import com.plaugig.todo2.ui.days.DaysItemDecoration
+import com.plaugig.todo2.ui.task.TaskAdapter
+import com.plaugig.todo2.ui.task.TaskItemDecoration
+import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
+
+class MainFragment : Fragment() {
+
+    private val viewModel : MainViewModel by activityViewModels()
+
+    private var _binding : FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+        }
+
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMainBinding.inflate(inflater , container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val dayAdapter = DaysAdapter()
+        val taskAdapter = TaskAdapter(
+            listener = viewModel
+        )
+
+        binding.days.adapter = dayAdapter
+        binding.tasks.adapter = taskAdapter
+
+        binding.days.addItemDecoration(DaysItemDecoration(requireContext()))
+        binding.tasks.addItemDecoration(TaskItemDecoration(requireContext()))
+
+        val itemTouchHelper = ItemTouchHelper(
+            SwipeToDeleteCallback(requireContext())
+        )
+        itemTouchHelper.attachToRecyclerView(binding.tasks)
+
+        viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            taskAdapter.task = tasks
+        }
+
+        viewModel.days.observe(viewLifecycleOwner) { days ->
+            dayAdapter.days = days
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

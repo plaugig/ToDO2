@@ -92,7 +92,7 @@ class MainViewModel : ViewModel(), MainEventListener {
             ),
         )
     )
-    val days: LiveData<List<DayItemState>> get() = _days
+        val days: LiveData<List<DayItemState>> get() = _days
 
 
     override fun onOpenTask(id: Int) {
@@ -106,14 +106,14 @@ class MainViewModel : ViewModel(), MainEventListener {
     }
 
     override fun onTaskDone(id: Int, isDone: Boolean) {
-        val tasks = tasks.value?.toMutableList()
+        val currentList = tasks.value!!.toMutableList()
 
-        tasks?.let {
-            val currentTask = tasks.find { it.id == id }
+        currentList?.let {
+            val currentTask = currentList.find { it.id == id }
 
             currentTask?.let { task ->
-                tasks.remove(task)
-                tasks.add(
+                currentList.remove(task)
+                currentList.add(
                     task.copy(
                         isDone = !isDone
                     )
@@ -121,6 +121,6 @@ class MainViewModel : ViewModel(), MainEventListener {
             }
         }
 
-        _tasks.postValue(tasks)
+        _tasks.postValue(currentList)
     }
 }
