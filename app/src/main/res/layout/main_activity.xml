@@ -7,13 +7,10 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"
-        tools:layout_editor_absoluteX="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteY="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

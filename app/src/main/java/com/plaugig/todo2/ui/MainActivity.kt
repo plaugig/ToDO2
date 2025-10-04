@@ -18,18 +18,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-
-        supportFragmentManager.beginTransaction().apply {
-
-            replace(R.id, MainFragment() , false )
-
-            commit()
-
-        }
-
-
-
-
-
     }
 }
