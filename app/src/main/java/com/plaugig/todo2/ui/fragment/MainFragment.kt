@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.plaugig.todo2.databinding.FragmentMainBinding
 import com.plaugig.todo2.ui.MainViewModel
@@ -18,7 +19,7 @@ import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
 
 class MainFragment : Fragment() {
 
-	lateinit var viewModel: MainViewModel
+	private val viewModel: MainViewModel by viewModels()
 
 	private var _binding: FragmentMainBinding? = null
 	private val binding get() = _binding!!
