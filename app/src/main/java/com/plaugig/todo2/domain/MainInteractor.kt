@@ -1,6 +1,8 @@
 package com.plaugig.todo2.domain
 
 import com.plaugig.todo2.domain.tasks.TasksUseCase
+import com.plaugig.todo2.ui.task.item.TaskItemData
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
@@ -10,7 +12,15 @@ class MainInteractor @Inject constructor(
 	private val tasksUseCase: TasksUseCase
 ) {
 
-	private fun deleteTask() {
+	fun getState(): Flow<List<TaskItemData>> {
+		return tasksUseCase.getTasks()
+	}
 
+	suspend fun addTask(task: TaskItemData) {
+		tasksUseCase.addTask(task)
+	}
+
+	suspend fun deleteTask(id: Int) {
+		tasksUseCase.deleteTask(id)
 	}
 }

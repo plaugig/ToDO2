@@ -27,8 +27,8 @@ class TaskDiffUtil(
         val oldItem = oldItem[oldItemPosition]
         val newItem = newItem[newItemPosition]
 
-        return oldItem.nameRes == newItem.nameRes
-                && oldItem.textRes == newItem.textRes
+        return oldItem.name == newItem.name
+                && oldItem.text == newItem.text
                 && oldItem.isDone == newItem.isDone
     }
 
@@ -37,8 +37,8 @@ class TaskDiffUtil(
         val newItem = newItem[newItemPosition]
 
         return TaskItemStatePayload (
-            isNameChanged = oldItem.nameRes != newItem.nameRes,
-            isTextChanged = oldItem.textRes != newItem.textRes,
+            isNameChanged = oldItem.name != newItem.name,
+            isTextChanged = oldItem.text != newItem.text,
             isDoneStateChanged = oldItem.isDone != newItem.isDone
         )
     }

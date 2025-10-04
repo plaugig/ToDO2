@@ -3,11 +3,13 @@ package com.plaugig.todo2.ui.fragments.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.plaugig.todo2.R
+import androidx.lifecycle.viewModelScope
 import com.plaugig.todo2.domain.MainInteractor
 import com.plaugig.todo2.ui.days.item.DayItemState
 import com.plaugig.todo2.ui.task.item.TaskItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -18,115 +20,100 @@ class MainViewModel @Inject constructor(
 	private val interactor: MainInteractor
 ) : ViewModel(), MainEventListener {
 
-    private val _tasks = MutableLiveData<List<TaskItemData>>(
-	    listOf(
-		    TaskItemData(
-			    id = 0,
-			    nameRes = R.string.name_text,
-			    textRes = R.string.text_task,
-			    isDone = false
-		    ),
-		    TaskItemData(
-			    id = 1,
-			    nameRes = R.string.name_text,
-			    textRes = R.string.text_task,
-			    isDone = false
-		    ),
-		    TaskItemData(
-			    id = 2,
-			    nameRes = R.string.name_text,
-			    textRes = R.string.text_task,
-			    isDone = false
-		    ),
-		    TaskItemData(
-			    id = 3,
-			    nameRes = R.string.name_text,
-			    textRes = R.string.text_task,
-			    isDone = false
-		    )
-	    )
-    )
-    val tasks: LiveData<List<TaskItemData>> get() = _tasks
+	val state = interactor.getState()
 
-    private val _days = MutableLiveData<List<DayItemState>>(
-	    listOf(
-		    DayItemState(
-			    id = 1,
-			    nameOfDay = "Mon",
-			    numberOfDay = "25"
+	private val _days = MutableLiveData<List<DayItemState>>(
+		listOf(
+			DayItemState(
+				id = 1,
+				nameOfDay = "Mon",
+				numberOfDay = "25"
 
-		    ),
-		    DayItemState(
-			    id = 2,
-			    nameOfDay = "Tue",
-			    numberOfDay = "26"
-		    ),
-		    DayItemState(
-			    id = 3,
-			    nameOfDay = "Wed",
-			    numberOfDay = "27"
-		    ),
-		    DayItemState(
-			    id = 4,
-			    nameOfDay = "Thu",
-			    numberOfDay = "28"
-		    ),
-		    DayItemState(
-			    id = 5,
-			    nameOfDay = "Fri",
-			    numberOfDay = "29"
-		    ),
-		    DayItemState(
-			    id = 5,
-			    nameOfDay = "Fri",
-			    numberOfDay = "29"
-		    ),
-		    DayItemState(
-			    id = 5,
-			    nameOfDay = "Fri",
-			    numberOfDay = "29"
-		    ),
-		    DayItemState(
-			    id = 5,
-			    nameOfDay = "Fri",
-			    numberOfDay = "29"
-		    ),
-		    DayItemState(
-			    id = 5,
-			    nameOfDay = "Fri",
-			    numberOfDay = "29"
-		    ),
-	    )
-    )
-        val days: LiveData<List<DayItemState>> get() = _days
+			),
+			DayItemState(
+				id = 2,
+				nameOfDay = "Tue",
+				numberOfDay = "26"
+			),
+			DayItemState(
+				id = 3,
+				nameOfDay = "Wed",
+				numberOfDay = "27"
+			),
+			DayItemState(
+				id = 4,
+				nameOfDay = "Thu",
+				numberOfDay = "28"
+			),
+			DayItemState(
+				id = 5,
+				nameOfDay = "Fri",
+				numberOfDay = "29"
+			),
+			DayItemState(
+				id = 5,
+				nameOfDay = "Fri",
+				numberOfDay = "29"
+			),
+			DayItemState(
+				id = 5,
+				nameOfDay = "Fri",
+				numberOfDay = "29"
+			),
+			DayItemState(
+				id = 5,
+				nameOfDay = "Fri",
+				numberOfDay = "29"
+			),
+			DayItemState(
+				id = 5,
+				nameOfDay = "Fri",
+				numberOfDay = "29"
+			),
+		)
+	)
+	val days: LiveData<List<DayItemState>> get() = _days
 
 
-    override fun onOpenTask(id: Int) {
-        println("FUCK: Open task: $id")
-    }
+	fun addTask() {
+		viewModelScope.launch(Dispatchers.IO) {
+			interactor.addTask(
+				TaskItemData(
+					id = (0..10000000).random(),
+					name = "Task",
+					text = Math.random().toString(),
+					isDone = false
+				)
+			)
+		}
+	}
 
-    override fun onDeleteTask(id: Int) {
-        _tasks.postValue(
-            tasks.value?.filter { it.id != id }
-        )
-    }
+	override fun onDeleteTask(id: Int) {
+		viewModelScope.launch(Dispatchers.IO) {
+			interactor.deleteTask(id)
+		}
+	}
 
-    override fun onTaskDone(id: Int, isDone: Boolean) {
-        val currentList = tasks.value!!.toMutableList()
+	override fun onOpenTask(id: Int) {
+		println("FUCK: Open task: $id")
+	}
 
-        currentList?.let {
-            val currentTask = currentList.find { it.id == id }
-
-            currentTask?.let { task ->
-                currentList.remove(task)
-                currentList.add(
-                    task.copy(
-                        isDone = !isDone
-                    )
-                )
-            }
-        }
-
-        _tasks.postValue(currentList)
-    }
+	override fun onTaskDone(id: Int, isDone: Boolean) {
+//        val currentList = tasks.value!!.toMutableList()
+//
+//        currentList?.let {
+//            val currentTask = currentList.find { it.id == id }
+//
+//            currentTask?.let { task ->
+//                currentList.remove(task)
+//                currentList.add(
+//                    task.copy(
+//                        isDone = !isDone
+//                    )
+//                )
+//            }
+//        }
+//
+//        _tasks.postValue(currentList)
+	}
 }

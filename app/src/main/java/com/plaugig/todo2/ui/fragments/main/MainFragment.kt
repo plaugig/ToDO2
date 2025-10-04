@@ -8,6 +8,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.plaugig.todo2.databinding.FragmentMainBinding
 import com.plaugig.todo2.ui.days.DaysAdapter
@@ -16,6 +19,7 @@ import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
 import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -53,8 +57,18 @@ class MainFragment : Fragment() {
 		)
 		itemTouchHelper.attachToRecyclerView(binding.tasks)
 
-		viewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-			taskAdapter.task = tasks
+
+		binding.addTask.setOnClickListener {
+			viewModel.addTask()
+		}
+
+
+		viewLifecycleOwner.lifecycleScope.launch {
+			repeatOnLifecycle(Lifecycle.State.STARTED) {
+				viewModel.state.collect { state ->
+					taskAdapter.task = state
+				}
+			}
 		}
 
 		viewModel.days.observe(viewLifecycleOwner) { days ->

@@ -21,8 +21,8 @@ class TaskViewHolder(
 	fun bind(state: TaskItemData) {
 		id = state.id
 
-		binding.nameTask.text = itemView.resources.getString(state.nameRes)
-		binding.textTask.text = itemView.resources.getString(state.textRes)
+		binding.nameTask.text = state.name
+		binding.textTask.text = state.text
 
 		binding.checkbox.setImageResource(
 			if (state.isDone) {
@@ -57,10 +57,10 @@ class TaskViewHolder(
 		payload as TaskItemStatePayload
 
 		if (payload.isNameChanged) {
-            itemView.resources.getString(state.nameRes)
+			binding.nameTask.text = state.name
 		}
 		if (payload.isTextChanged) {
-            itemView.resources.getString(state.textRes)
+			binding.textTask.text = state.text
 		}
 		if (payload.isDoneStateChanged) {
 			binding.checkbox.setImageResource(
