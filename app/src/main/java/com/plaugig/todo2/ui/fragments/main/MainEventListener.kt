@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui
+package com.plaugig.todo2.ui.fragments.main
 
 /**
  * Created by George on 9/14/25.

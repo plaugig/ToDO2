@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.databinding.TaskItemBinding
-import com.plaugig.todo2.ui.MainEventListener
+import com.plaugig.todo2.ui.fragments.main.MainEventListener
 
 class TaskViewHolder(
 	itemView: View,

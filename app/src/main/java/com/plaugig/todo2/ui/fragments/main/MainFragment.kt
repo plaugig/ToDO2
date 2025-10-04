@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.fragment
+package com.plaugig.todo2.ui.fragments.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.plaugig.todo2.databinding.FragmentMainBinding
-import com.plaugig.todo2.ui.MainViewModel
 import com.plaugig.todo2.ui.days.DaysAdapter
 import com.plaugig.todo2.ui.days.DaysItemDecoration
 import com.plaugig.todo2.ui.task.TaskAdapter
