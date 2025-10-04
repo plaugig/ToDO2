@@ -1,6 +1,5 @@
 package com.plaugig.todo2.ui.activity
 
-import android.R
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,13 +16,13 @@ class MainActivity : AppCompatActivity() {
 
 
 	private fun showMainFragment() {
-		var fragment = supportFragmentManager.findFragmentById(R.id.content)
+		var fragment = supportFragmentManager.findFragmentById(android.R.id.content)
 
 		if (fragment == null) {
 			fragment = MainFragment()
 			supportFragmentManager
 				.beginTransaction()
-				.replace(R.id.content, fragment)
+				.replace(android.R.id.content, fragment)
 				.commit()
 		}
 	}
