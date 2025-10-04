@@ -2,21 +2,29 @@ package com.plaugig.todo2.ui
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.plaugig.todo2.R
 import com.plaugig.todo2.ui.fragment.MainFragment
 
 
 class MainActivity : AppCompatActivity() {
 
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		enableEdgeToEdge()
 
-    private val viewModel: MainViewModel by viewModels()
+		showMainFragment()
+	}
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+	private fun showMainFragment() {
+		var fragment = supportFragmentManager.findFragmentById(android.R.id.content)
 
-    }
+		if (fragment == null) {
+			fragment = MainFragment()
+			supportFragmentManager
+				.beginTransaction()
+				.replace(android.R.id.content, fragment)
+				.commit()
+		}
+	}
 }
