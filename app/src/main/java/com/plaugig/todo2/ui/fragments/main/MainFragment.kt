@@ -15,7 +15,9 @@ import com.plaugig.todo2.ui.days.DaysItemDecoration
 import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
 import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
 	private val viewModel: MainViewModel by viewModels()
@@ -23,12 +25,6 @@ class MainFragment : Fragment() {
 	private var _binding: FragmentMainBinding? = null
 	private val binding get() = _binding!!
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		arguments?.let {
-		}
-
-	}
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,

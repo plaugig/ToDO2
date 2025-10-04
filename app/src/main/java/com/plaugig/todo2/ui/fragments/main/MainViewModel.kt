@@ -4,13 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.plaugig.todo2.R
+import com.plaugig.todo2.domain.MainInteractor
 import com.plaugig.todo2.ui.days.item.DayItemState
 import com.plaugig.todo2.ui.task.item.TaskItemData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 /**
  * Created by George on 9/14/25.
  */
-class MainViewModel : ViewModel(), MainEventListener {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+	private val interactor: MainInteractor
+) : ViewModel(), MainEventListener {
 
     private val _tasks = MutableLiveData<List<TaskItemData>>(
 	    listOf(
