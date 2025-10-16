@@ -36,7 +36,7 @@ class TaskViewHolder(
 			ContextCompat.getColor(
 				binding.root.context,
 				if (state.isDone) {
-					R.color.task_color_true
+					R.color.basic_color
 				} else {
 					R.color.task_color_false
 				}
@@ -75,7 +75,7 @@ class TaskViewHolder(
 				ContextCompat.getColor(
 					binding.root.context,
 					if (state.isDone) {
-						R.color.task_color_true
+						R.color.basic_color
 					} else {
 						R.color.task_color_false
 					}

@@ -9,7 +9,6 @@
     <dimen name="offset_xxl">32dp</dimen>
     <dimen name="offset_xxxl">48dp</dimen>
     <dimen name="offset_xxxxl">64dp</dimen>
-
     <dimen name="default_radius">12dp</dimen>
 
 </resources>

@@ -4,4 +4,9 @@
     <string name="text_task">Test text, test text, test text, test text, test text, test text, test text, test text, test text, test text, test text, test text</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_bottom">Chose date</string>
+    <string name="save_bottom">Save</string>
+    <string name="managment">Create note</string>
+    <string name="title_sheat">Add title</string>
+    <string name="description_sheat">Add description</string>
 </resources>
