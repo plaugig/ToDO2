@@ -75,18 +75,18 @@ class MainViewModel @Inject constructor(
 	val days: LiveData<List<DayItemState>> get() = _days
 
 
-	fun addTask() {
-		viewModelScope.launch(Dispatchers.IO) {
-			interactor.addTask(
-				TaskItemData(
-					id = (0..10000000).random(),
-					name = "Task",
-					text = Math.random().toString(),
-					isDone = false
-				)
-			)
-		}
-	}
+//	fun addTask() {
+//		viewModelScope.launch(Dispatchers.IO) {
+//			interactor.addTask(
+//				TaskItemData(
+//					id = (0..10000000).random(),
+////					name = "Task",
+////					text = Math.random().toString(),
+//					isDone = false
+//				)
+//			)
+//		}
+//	}
 
 	override fun onDeleteTask(id: Int) {
 		viewModelScope.launch(Dispatchers.IO) {

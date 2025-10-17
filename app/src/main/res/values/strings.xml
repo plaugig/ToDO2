@@ -7,6 +7,6 @@
     <string name="date_bottom">Chose date</string>
     <string name="save_bottom">Save</string>
     <string name="managment">Create note</string>
-    <string name="title_sheat">Add title</string>
-    <string name="description_sheat">Add description</string>
+    <string name="title_sheet">Add title</string>
+    <string name="description_sheet">Add description</string>
 </resources>

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.plaugig.todo2.databinding.FragmentMainBinding
 import com.plaugig.todo2.ui.days.DaysAdapter
 import com.plaugig.todo2.ui.days.DaysItemDecoration
-import com.plaugig.todo2.ui.task.BottomSheet
+import com.plaugig.todo2.ui.bottom.sheet.CreateTaskBottomSheetDialogFragment
 import com.plaugig.todo2.ui.task.TaskAdapter
 import com.plaugig.todo2.ui.task.TaskItemDecoration
 import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
@@ -61,7 +61,7 @@ class MainFragment : Fragment() {
 
 		binding.addTask.setOnClickListener {
 
-			val bottomSheet = BottomSheet()
+			val bottomSheet = CreateTaskBottomSheetDialogFragment()
 			bottomSheet.show(parentFragmentManager, "sheet")
 
 		}
