@@ -62,4 +62,8 @@ dependencies {
 
     // Fragment
     implementation(libs.fragment.ktx)
+
+    // Room
+    implementation(libs.room)
+    ksp(libs.room.compiler)
 }
