@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plaugig.todo2.domain.MainInteractor
 import com.plaugig.todo2.ui.days.item.DayItemState
-import com.plaugig.todo2.ui.task.item.TaskItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,23 +73,9 @@ class MainViewModel @Inject constructor(
 	)
 	val days: LiveData<List<DayItemState>> get() = _days
 
-
-//	fun addTask() {
-//		viewModelScope.launch(Dispatchers.IO) {
-//			interactor.addTask(
-//				TaskItemData(
-//					id = (0..10000000).random(),
-////					name = "Task",
-////					text = Math.random().toString(),
-//					isDone = false
-//				)
-//			)
-//		}
-//	}
-
 	override fun onDeleteTask(id: Int) {
 		viewModelScope.launch(Dispatchers.IO) {
-			interactor.deleteTask(id)
+			interactor.deleteTaskById(id)
 		}
 	}
 

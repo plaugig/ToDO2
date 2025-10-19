@@ -22,10 +22,10 @@ class TaskViewHolder(
 		id = state.id
 
 		binding.nameTask.text = state.name
-		binding.textTask.text = state.text
+		binding.textTask.text = state.description
 
 		binding.checkbox.setImageResource(
-			if (state.isDone) {
+			if (state.isCompleted) {
 				R.drawable.ic_checked_box
 			} else {
 				R.drawable.check_box_task
@@ -35,7 +35,7 @@ class TaskViewHolder(
 		binding.root.setCardBackgroundColor(
 			ContextCompat.getColor(
 				binding.root.context,
-				if (state.isDone) {
+				if (state.isCompleted) {
 					R.color.basic_color
 				} else {
 					R.color.task_color_false
@@ -43,7 +43,7 @@ class TaskViewHolder(
 			)
 		)
 
-		if (state.isDone) {
+		if (state.isCompleted) {
 			binding.textTask.paintFlags = binding.textTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 		} else {
 			binding.textTask.paintFlags =
@@ -60,11 +60,11 @@ class TaskViewHolder(
 			binding.nameTask.text = state.name
 		}
 		if (payload.isTextChanged) {
-			binding.textTask.text = state.text
+			binding.textTask.text = state.description
 		}
 		if (payload.isDoneStateChanged) {
 			binding.checkbox.setImageResource(
-				if (state.isDone) {
+				if (state.isCompleted) {
 					R.drawable.ic_checked_box
 				} else {
 					R.drawable.check_box_task
@@ -74,7 +74,7 @@ class TaskViewHolder(
 			binding.root.setCardBackgroundColor(
 				ContextCompat.getColor(
 					binding.root.context,
-					if (state.isDone) {
+					if (state.isCompleted) {
 						R.color.basic_color
 					} else {
 						R.color.task_color_false
@@ -82,7 +82,7 @@ class TaskViewHolder(
 				)
 			)
 
-			if (state.isDone) {
+			if (state.isCompleted) {
 				binding.textTask.paintFlags = binding.textTask.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 			} else {
 				binding.textTask.paintFlags =
@@ -95,7 +95,7 @@ class TaskViewHolder(
 
 	private fun setClickListener(state: TaskItemData) {
 		binding.checkbox.setOnClickListener {
-			listener.onTaskDone(state.id, state.isDone)
+			listener.onTaskDone(state.id, state.isCompleted)
 		}
 
 		binding.root.setOnClickListener {

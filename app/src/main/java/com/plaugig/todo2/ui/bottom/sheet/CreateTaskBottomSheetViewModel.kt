@@ -32,8 +32,8 @@ class CreateTaskBottomSheetViewModel @Inject constructor(
             task = TaskItemData(
                 id = (0..10000000).random(),
                 name = titleState.value,
-                text = descriptionState.value,
-                isDone = false
+                description = descriptionState.value,
+                isCompleted = false
             )
         )
     }

@@ -16,11 +16,7 @@ class MainInteractor @Inject constructor(
 		return tasksUseCase.getTasks()
 	}
 
-	suspend fun addTask(task: TaskItemData) {
-		tasksUseCase.addTask(task)
-	}
-
-	suspend fun deleteTask(id: Int) {
-		tasksUseCase.deleteTask(id)
+	suspend fun deleteTaskById(id: Int) {
+		tasksUseCase.deleteTaskById(id)
 	}
 }
