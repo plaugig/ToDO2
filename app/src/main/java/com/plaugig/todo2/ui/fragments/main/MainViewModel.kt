@@ -8,6 +8,8 @@ import com.plaugig.todo2.domain.MainInteractor
 import com.plaugig.todo2.ui.days.item.DayItemState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -73,6 +75,10 @@ class MainViewModel @Inject constructor(
 	)
 	val days: LiveData<List<DayItemState>> get() = _days
 
+	private val _uiActions = MutableSharedFlow<MainFragmentUiAction>()
+	val uiActions: SharedFlow<MainFragmentUiAction> get() = _uiActions
+
+
 	override fun onDeleteTask(id: Int) {
 		viewModelScope.launch(Dispatchers.IO) {
 			interactor.deleteTaskById(id)
@@ -80,25 +86,14 @@ class MainViewModel @Inject constructor(
 	}
 
 	override fun onOpenTask(id: Int) {
-		println("FUCK: Open task: $id")
+		_uiActions.tryEmit(
+			MainFragmentUiAction.OpenTask(
+				id = id
+			)
+		)
 	}
 
 	override fun onTaskDone(id: Int, isDone: Boolean) {
-//        val currentList = tasks.value!!.toMutableList()
-//
-//        currentList?.let {
-//            val currentTask = currentList.find { it.id == id }
-//
-//            currentTask?.let { task ->
-//                currentList.remove(task)
-//                currentList.add(
-//                    task.copy(
-//                        isDone = !isDone
-//                    )
-//                )
-//            }
-//        }
-//
-//        _tasks.postValue(currentList)
+		println("FUCK: Task is done: $id")
 	}
 }

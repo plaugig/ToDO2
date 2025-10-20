@@ -60,17 +60,24 @@ class MainFragment : Fragment() {
 
 
 		binding.addTask.setOnClickListener {
-
-			val bottomSheet = CreateTaskBottomSheetDialogFragment()
-			bottomSheet.show(parentFragmentManager, "sheet")
-
+			openCreateTaskBottomSheet()
 		}
 
 
 		viewLifecycleOwner.lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
-				viewModel.state.collect { state ->
-					taskAdapter.task = state
+				launch {
+					viewModel.state.collect { state ->
+						taskAdapter.task = state
+					}
+				}
+
+				launch {
+					viewModel.uiActions.collect { action ->
+						when (action) {
+							is MainFragmentUiAction.OpenTask -> openTask(action.id)
+						}
+					}
 				}
 			}
 		}
@@ -84,6 +91,16 @@ class MainFragment : Fragment() {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 			insets
 		}
+	}
+
+
+	private fun openTask(id: Int) {
+
+	}
+
+	private fun openCreateTaskBottomSheet() {
+		val bottomSheet = CreateTaskBottomSheetDialogFragment()
+		bottomSheet.show(parentFragmentManager, "create_task_bottom_sheet")
 	}
 
 
