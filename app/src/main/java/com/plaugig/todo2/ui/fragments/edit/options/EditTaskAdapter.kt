@@ -43,7 +43,7 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskViewHolder>() {
         return when (items[position]) {
             is EditTaskButtonItem -> EditActionItemType.BUTTON
             is EditTaskSelectorItem -> EditActionItemType.SELECTOR
-            else -> error("Invalid item for view type!")
+            else -> error("Invalid item for view type.!.")
         }
     }
 }
