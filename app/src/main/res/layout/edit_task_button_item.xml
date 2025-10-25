@@ -10,16 +10,17 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/offset_m">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageView"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/arrow_right_24px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            tools:text="@string/category"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/date_time"
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Study"
@@ -28,14 +29,13 @@
             app:layout_constraintEnd_toStartOf="@id/imageView"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/reminder"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/category"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:srcCompat="@drawable/arrow_right_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

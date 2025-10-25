@@ -1,13 +1,16 @@
 package com.plaugig.todo2.ui.fragments.edit.options
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.plaugig.todo2.R
 import com.plaugig.todo2.ui.fragments.edit.options.EditActionItemType
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskItemDiffUtil
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
 
 class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
@@ -27,7 +30,17 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 	    parent: ViewGroup,
 	    viewType: Int
     ): EditTaskItemViewHolder {
-
+        return when (viewType) {
+            EditActionItemType.BUTTON -> {
+                val itemView = LayoutInflater.from(parent.context).inflate(
+                    R.layout.edit_task_button_item,
+                    parent,
+                    false
+                )
+                EditTaskButtonItemViewHolder(itemView)
+            }
+            else -> error("Invalid view type for view holder!")
+        }
     }
 
     override fun onBindViewHolder(
@@ -43,7 +56,7 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
         return when (items[position]) {
             is EditTaskButtonItem -> EditActionItemType.BUTTON
             is EditTaskSelectorItem -> EditActionItemType.SELECTOR
-            else -> error("Invalid item for view type.!.")
+            else -> error("Invalid item for view type!")
         }
     }
 }

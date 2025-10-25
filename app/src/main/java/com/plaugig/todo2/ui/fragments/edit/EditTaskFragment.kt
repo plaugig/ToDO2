@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.plaugig.todo2.databinding.FragmentRedactTaskBinding
+import com.plaugig.todo2.ui.fragments.edit.options.EditTaskAdapter
 
 class EditTaskFragment : Fragment() {
 
@@ -22,6 +23,10 @@ class EditTaskFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val adapter = EditTaskAdapter()
+        binding.taskOptions.adapter = adapter
+
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
