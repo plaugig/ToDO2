@@ -1,6 +1,7 @@
-package com.plaugig.todo2.ui.fragment.redact.task.item
+package com.plaugig.todo2.ui.fragments.edit.options.item
 
 import androidx.recyclerview.widget.DiffUtil
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 
 class EditTaskItemDiffUtil(
     private val oldItems: List<EditTaskItem>,

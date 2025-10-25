@@ -1,23 +1,22 @@
-package com.plaugig.todo2.ui.fragment.redact.task
+package com.plaugig.todo2.ui.fragments.edit.options
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditActionItemType
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskButtonItem
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskItem
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskItemDiffUtil
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskViewHolder
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskItemViewHolder
-import com.plaugig.todo2.ui.fragment.redact.task.item.EditTaskSelectorItem
+import com.plaugig.todo2.ui.fragments.edit.options.EditActionItemType
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskItemDiffUtil
+import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskViewHolder
+import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
 
 class EditTaskAdapter() : RecyclerView.Adapter<EditTaskViewHolder>() {
 
     var items = emptyList<EditTaskItem>()
         set(value) {
             val callback = EditTaskItemDiffUtil(
-                oldItems = field,
-                newItems = value
+	            oldItems = field,
+	            newItems = value
             )
             val result = DiffUtil.calculateDiff(callback)
             field = value
@@ -25,15 +24,15 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskViewHolder>() {
         }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+	    parent: ViewGroup,
+	    viewType: Int
     ): EditTaskViewHolder {
 
     }
 
     override fun onBindViewHolder(
-        holder: EditTaskViewHolder,
-        position: Int
+	    holder: EditTaskViewHolder,
+	    position: Int
     ) {
         TODO("Not yet implemented")
     }

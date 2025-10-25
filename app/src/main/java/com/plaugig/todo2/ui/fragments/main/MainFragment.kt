@@ -16,7 +16,7 @@ import com.plaugig.todo2.databinding.FragmentMainBinding
 import com.plaugig.todo2.ui.fragments.main.days.DaysAdapter
 import com.plaugig.todo2.ui.fragments.main.days.DaysItemDecoration
 import com.plaugig.todo2.ui.bottom.sheet.CreateTaskBottomSheetDialogFragment
-import com.plaugig.todo2.ui.fragment.redact.task.EditTaskFragment
+import com.plaugig.todo2.ui.fragments.edit.EditTaskFragment
 import com.plaugig.todo2.ui.fragments.main.task.TaskAdapter
 import com.plaugig.todo2.ui.fragments.main.task.TaskItemDecoration
 import com.plaugig.todo2.ui.fragments.main.task.swipe.SwipeToDeleteCallback

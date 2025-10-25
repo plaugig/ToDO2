@@ -1,4 +1,6 @@
-package com.plaugig.todo2.ui.fragment.redact.task.item
+package com.plaugig.todo2.ui.fragments.edit.options.item.selector
+
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 
 data class EditTaskSelectorItem(
     val items: List<String>

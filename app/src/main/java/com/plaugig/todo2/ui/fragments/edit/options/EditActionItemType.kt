@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.fragment.redact.task.item
+package com.plaugig.todo2.ui.fragments.edit.options
 
 object EditActionItemType {
     const val SELECTOR = 1000

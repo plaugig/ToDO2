@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.fragment.redact.task
+package com.plaugig.todo2.ui.fragments.edit
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,5 +30,4 @@ class EditTaskFragment : Fragment() {
         }
 
     }
-
 }
