@@ -15,7 +15,7 @@ class TaskAdapter(
     private val listener: MainEventListener ,
 ) : RecyclerView.Adapter<TaskViewHolder>() {
 
-    var task: List<TaskItemData> = emptyList()
+    var tasks: List<TaskItemData> = emptyList()
         set(value) {
             val callback = TaskDiffUtil(field, value)
             val difference = DiffUtil.calculateDiff(callback)
@@ -41,7 +41,7 @@ class TaskAdapter(
         holder: TaskViewHolder,
         position: Int
     ) {
-        holder.bind(task[position])
+        holder.bind(tasks[position])
     }
 
     override fun onBindViewHolder(
@@ -53,10 +53,10 @@ class TaskAdapter(
             onBindViewHolder(holder, position)
         } else {
             payloads.forEach { payload ->
-                holder.bind(task[position], payload)
+                holder.bind(tasks[position], payload)
             }
         }
     }
 
-    override fun getItemCount(): Int = task.size
+    override fun getItemCount(): Int = tasks.size
 }

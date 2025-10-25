@@ -69,7 +69,7 @@ class MainFragment : Fragment() {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				launch {
 					viewModel.state.collect { state ->
-						taskAdapter.task = state
+						taskAdapter.tasks = state
 					}
 				}
 

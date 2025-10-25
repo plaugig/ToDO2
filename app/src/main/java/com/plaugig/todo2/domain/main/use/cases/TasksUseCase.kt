@@ -1,4 +1,4 @@
-package com.plaugig.todo2.domain.tasks
+package com.plaugig.todo2.domain.main.use.cases
 
 import com.plaugig.todo2.data.task.TaskData
 import com.plaugig.todo2.data.task.repository.TaskRepository

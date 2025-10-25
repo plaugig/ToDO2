@@ -18,7 +18,7 @@ class EditTaskButtonItemViewHolder(itemView: View): EditTaskItemViewHolder(itemV
 
     override fun bind(
         item: EditTaskItem,
-        payload: Any
+        payload: Any?
     ) {
         item as EditTaskButtonItem
         payload as EditTaskButtonItemPayload
