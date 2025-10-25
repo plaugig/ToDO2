@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.ui.fragments.edit.options.EditActionItemType
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskItemDiffUtil
-import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskViewHolder
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
 
-class EditTaskAdapter() : RecyclerView.Adapter<EditTaskViewHolder>() {
+class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 
     var items = emptyList<EditTaskItem>()
         set(value) {
@@ -26,12 +26,12 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskViewHolder>() {
     override fun onCreateViewHolder(
 	    parent: ViewGroup,
 	    viewType: Int
-    ): EditTaskViewHolder {
+    ): EditTaskItemViewHolder {
 
     }
 
     override fun onBindViewHolder(
-	    holder: EditTaskViewHolder,
+	    holder: EditTaskItemViewHolder,
 	    position: Int
     ) {
         TODO("Not yet implemented")
