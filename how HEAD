@@ -1,0 +1,36 @@
+[33md435e0e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m FuckNigers
+[33ma9c2b4b[m New ui action
+[33mc094dc6[m New data base for tasks
+[33m6fb75e4[m Room dependency
+[33m10ccab0[m add red task
+[33ma6480de[m create task bottom sheet logic
+[33m2609f25[m add Bottom sheet
+[33mde0e06b[m User can add and remove tasks. New database and layers
+[33m0d3e8f6[m Hilt
+[33m61737b8[m Refactor
+[33mf194557[m Refactor
+[33m655ef03[m Refactor
+[33mce9eb5b[m by viewModels dependency
+[33m2e1b9f8[m update dependencies
+[33m587e86e[m Ksp fix + hilt repo
+[33mb72a646[m Refactoring
+[33mb866ab3[m Single activity arheticture
+[33md60fbb6[m Swipe to delete
+[33m0e73702[m added swipe
+[33m9c1a925[m added days in MainViewModel
+[33m4e449e7[m New ViewModel, EventListener, bug fix, LiveData
+[33m758c536[m Diff util fix, refactoring
+[33m28f29b9[m Fixes
+[33ma9a515d[m fixed the fucking check mark and added strikethrough text
+[33m61f41dd[m button ready, and finalizing the task
+[33m8a50a14[m idents task
+[33mff7525d[m created task
+[33m0cd13c2[m New item decoration
+[33m5a97bc9[m UI fix
+[33m8f40bf8[m New days recycler view, diffUtil, items and xmls
+[33mf8a278d[m Refactor
+[33m3baf63e[m fix
+[33m391f0df[m fix
+[33md74a5e7[m idea changes
+[33m67efcb9[m binding feature
+[33m11f8fc5[m Initial commit
