@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.days.item
+package com.plaugig.todo2.ui.fragments.main.days.item
 
 import androidx.recyclerview.widget.DiffUtil
 

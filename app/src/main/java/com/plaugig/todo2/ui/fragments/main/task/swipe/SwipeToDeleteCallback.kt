@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.task.swipe
+package com.plaugig.todo2.ui.fragments.main.task.swipe
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
-import com.plaugig.todo2.ui.task.item.TaskViewHolder
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskViewHolder
 
 class SwipeToDeleteCallback(
 	context: Context
@@ -32,7 +32,7 @@ class SwipeToDeleteCallback(
 	}
 
 	private val clearPaint = Paint().apply {
-		xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+		Paint.setXfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 	}
 
 

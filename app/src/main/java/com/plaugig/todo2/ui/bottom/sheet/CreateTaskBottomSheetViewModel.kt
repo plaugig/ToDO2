@@ -3,7 +3,7 @@ package com.plaugig.todo2.ui.bottom.sheet
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plaugig.todo2.domain.tasks.TasksUseCase
-import com.plaugig.todo2.ui.task.item.TaskItemData
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -9,7 +9,7 @@
     <string name="managment">Create note</string>
     <string name="title_sheet">Add title</string>
     <string name="description_sheet">Add description</string>
-    <string name="delete_bottom">Delete</string>
+    <string name="delete_button">Delete</string>
     <string name="reminder">Reminder</string>
     <string name="category">Category</string>
 </resources>

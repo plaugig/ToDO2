@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.days.item
+package com.plaugig.todo2.ui.fragments.main.days.item
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

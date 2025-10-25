@@ -1,13 +1,13 @@
-package com.plaugig.todo2.ui.days
+package com.plaugig.todo2.ui.fragments.main.days
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
-import com.plaugig.todo2.ui.days.item.DayItemState
-import com.plaugig.todo2.ui.days.item.DayViewHolder
-import com.plaugig.todo2.ui.days.item.DaysDiffUtil
+import com.plaugig.todo2.ui.fragments.main.days.item.DayItemState
+import com.plaugig.todo2.ui.fragments.main.days.item.DayViewHolder
+import com.plaugig.todo2.ui.fragments.main.days.item.DaysDiffUtil
 
 /**
  * Created by George on 9/6/25.

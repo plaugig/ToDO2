@@ -2,7 +2,7 @@ package com.plaugig.todo2.domain.tasks
 
 import com.plaugig.todo2.data.task.TaskData
 import com.plaugig.todo2.data.task.repository.TaskRepository
-import com.plaugig.todo2.ui.task.item.TaskItemData
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

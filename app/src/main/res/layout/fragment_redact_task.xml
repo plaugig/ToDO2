@@ -3,37 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/exit"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow_left"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/offset_xl"
-        android:layout_marginStart="@dimen/offset_l"/>
-
-    <TextView
-        android:id="@+id/date_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="41dp"
-        app:layout_constraintStart_toEndOf="@id/exit"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/offset_xl"
-        android:layout_marginStart="@dimen/offset_l"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="179dp"
-        app:layout_constraintTop_toBottomOf="@id/date_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/offset_l"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,8 +67,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="215dp"
         app:layout_constraintTop_toBottomOf="@id/red_task"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/offset_xxl"
@@ -94,47 +75,42 @@
         android:layout_marginStart="@dimen/offset_l"
         android:layout_marginEnd="@dimen/offset_l"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="126dp"
-        app:layout_constraintTop_toBottomOf="@id/task_options"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="@dimen/offset_l"
-        android:layout_marginEnd="@dimen/offset_l"
-        android:orientation="horizontal"
-        android:id="@+id/priority"/>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/date_bottom"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="542dp"
+        android:text="@string/delete_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="@dimen/offset_l"
         android:layout_marginBottom="@dimen/offset_l"
         app:icon="@drawable/ic_delete"
-        android:backgroundTint="@color/basic_color"/>
+        app:layout_constraintEnd_toStartOf="@id/save_button"
+        android:layout_marginEnd="@dimen/offset_m"
+        android:textColor="@color/basic_color"
+        app:iconTint="@color/basic_color"
+        app:strokeColor="@color/basic_color"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:strokeWidth="2dp"
+        app:cornerRadius="@dimen/default_radius"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/save_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/save_bottom"
-        tools:layout_editor_absoluteX="263dp"
-        tools:layout_editor_absoluteY="546dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="@dimen/offset_l"
         android:layout_marginBottom="@dimen/offset_l"
         app:icon="@drawable/save_24px"
-        android:backgroundTint="@color/purple"/>
+        app:backgroundTint="@color/basic_color"
+        app:cornerRadius="@dimen/default_radius"
+        app:layout_constraintStart_toEndOf="@id/delete_button"
+        android:layout_marginStart="@dimen/offset_m"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

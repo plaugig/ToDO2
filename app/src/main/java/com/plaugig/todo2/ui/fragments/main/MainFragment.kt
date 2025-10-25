@@ -13,12 +13,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.plaugig.todo2.databinding.FragmentMainBinding
-import com.plaugig.todo2.ui.days.DaysAdapter
-import com.plaugig.todo2.ui.days.DaysItemDecoration
+import com.plaugig.todo2.ui.fragments.main.days.DaysAdapter
+import com.plaugig.todo2.ui.fragments.main.days.DaysItemDecoration
 import com.plaugig.todo2.ui.bottom.sheet.CreateTaskBottomSheetDialogFragment
-import com.plaugig.todo2.ui.task.TaskAdapter
-import com.plaugig.todo2.ui.task.TaskItemDecoration
-import com.plaugig.todo2.ui.task.swipe.SwipeToDeleteCallback
+import com.plaugig.todo2.ui.fragment.redact.task.EditTaskFragment
+import com.plaugig.todo2.ui.fragments.main.task.TaskAdapter
+import com.plaugig.todo2.ui.fragments.main.task.TaskItemDecoration
+import com.plaugig.todo2.ui.fragments.main.task.swipe.SwipeToDeleteCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -91,11 +92,16 @@ class MainFragment : Fragment() {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 			insets
 		}
+
 	}
 
 
 	private fun openTask(id: Int) {
-
+		parentFragmentManager
+			.beginTransaction()
+			.replace(android.R.id.content, EditTaskFragment() )
+			.addToBackStack(null)
+			.commit()
 	}
 
 	private fun openCreateTaskBottomSheet() {
@@ -108,4 +114,6 @@ class MainFragment : Fragment() {
 		super.onDestroyView()
 		_binding = null
 	}
+
+
 }

@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.task
+package com.plaugig.todo2.ui.fragments.main.task
 
 
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.ui.fragments.main.MainEventListener
-import com.plaugig.todo2.ui.task.item.TaskDiffUtil
-import com.plaugig.todo2.ui.task.item.TaskItemData
-import com.plaugig.todo2.ui.task.item.TaskViewHolder
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskDiffUtil
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
+import com.plaugig.todo2.ui.fragments.main.task.item.TaskViewHolder
 
 class TaskAdapter(
     private val listener: MainEventListener ,

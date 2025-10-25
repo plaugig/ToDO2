@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.task
+package com.plaugig.todo2.ui.fragments.main.task
 
 import android.content.Context
 import android.graphics.Rect

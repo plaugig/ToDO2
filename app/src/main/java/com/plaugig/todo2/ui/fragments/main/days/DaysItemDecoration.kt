@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.days
+package com.plaugig.todo2.ui.fragments.main.days
 
 import android.content.Context
 import android.graphics.Rect

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.plaugig.todo2.domain.MainInteractor
-import com.plaugig.todo2.ui.days.item.DayItemState
+import com.plaugig.todo2.ui.fragments.main.days.item.DayItemState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -86,11 +86,16 @@ class MainViewModel @Inject constructor(
 	}
 
 	override fun onOpenTask(id: Int) {
-		_uiActions.tryEmit(
-			MainFragmentUiAction.OpenTask(
-				id = id
+		viewModelScope.launch {
+			_uiActions.emit(
+				MainFragmentUiAction.OpenTask(
+					id = id
+				)
 			)
-		)
+
+		}
+
+
 	}
 
 	override fun onTaskDone(id: Int, isDone: Boolean) {

@@ -1,4 +1,4 @@
-package com.plaugig.todo2.ui.task.item
+package com.plaugig.todo2.ui.fragments.main.task.item
 
 import androidx.recyclerview.widget.DiffUtil
 
