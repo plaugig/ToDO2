@@ -1,8 +1,10 @@
 package com.plaugig.todo2.domain.edit.use.cases
 
+import com.plaugig.todo2.R
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -25,7 +27,25 @@ class EditOptionsUseCase @Inject constructor() {
 				EditTaskButtonItem(
 					title = "Category",
 					description = "Study"
-				)
+				),
+				EditTaskSelectorItem(
+					listOf(
+						SelectorItemData(
+							25,
+							"Hard",
+							R.color.red
+						),SelectorItemData(
+							42,
+							"Medium",
+							R.color.basic_color
+						),SelectorItemData(
+							23,
+							"Ez",
+							R.color.purple
+						),
+					)
+
+				),
 			)
 		).flowOn(Dispatchers.IO).distinctUntilChanged()
 	}

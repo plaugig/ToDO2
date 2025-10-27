@@ -38,6 +38,20 @@ class SelectorItemAdapter(
         holder.bind(currentItems[position])
     }
 
+    override fun onBindViewHolder(
+        holder: SelectorItemViewHolder,
+        position: Int,
+        payloads: List<Any?>
+    ) {
+        if (payloads.isEmpty()) {
+            onBindViewHolder(holder,position)
+        } else {
+            payloads.forEach{ payloads ->
+                holder.bind(currentItems[position], payloads)
+            }
+        }
+    }
+
     override fun getItemCount(): Int = currentItems.size
 
 }

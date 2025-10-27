@@ -20,7 +20,7 @@ class EditTaskSelectorItemViewHoldet (itemView : View) : EditTaskItemViewHolder(
 
     override fun bind(
         item: EditTaskItem,
-        payload: Any
+        payload: Any?
     ) {
         item as EditTaskSelectorItem
         payload as EditTaskSelectorItemPayload
