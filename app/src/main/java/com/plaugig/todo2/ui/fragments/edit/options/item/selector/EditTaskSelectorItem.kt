@@ -1,9 +1,10 @@
 package com.plaugig.todo2.ui.fragments.edit.options.item.selector
 
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemData
 
 data class EditTaskSelectorItem(
-    val items: List<String>
+    val items: List<SelectorItemData>
 ) : EditTaskItem() {
     override fun isItemTheSame(item: EditTaskItem): Boolean {
         return item is EditTaskSelectorItem
