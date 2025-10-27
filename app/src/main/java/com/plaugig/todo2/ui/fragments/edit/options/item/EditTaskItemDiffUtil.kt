@@ -32,6 +32,9 @@ class EditTaskItemDiffUtil(
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-        return super.getChangePayload(oldItemPosition, newItemPosition)
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+
+        return oldItem.getPayload(newItem)
     }
 }

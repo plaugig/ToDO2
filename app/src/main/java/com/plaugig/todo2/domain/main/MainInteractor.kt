@@ -1,6 +1,6 @@
-package com.plaugig.todo2.domain
+package com.plaugig.todo2.domain.main
 
-import com.plaugig.todo2.domain.tasks.TasksUseCase
+import com.plaugig.todo2.domain.main.use.cases.TasksUseCase
 import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

@@ -32,7 +32,7 @@ class SwipeToDeleteCallback(
 	}
 
 	private val clearPaint = Paint().apply {
-		Paint.setXfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
+		xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 	}
 
 

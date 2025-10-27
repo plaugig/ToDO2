@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
-import com.plaugig.todo2.ui.fragments.edit.options.EditActionItemType
-import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskItemDiffUtil
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
-import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItemViewHoldet
 
 class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 
@@ -41,15 +39,9 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
                 EditTaskButtonItemViewHolder(itemView)
             }
 
-            EditActionItemType.SELECTOR -> {
-                val itemView = LayoutInflater.from(parent.context).inflate(
-                    R.layout.edit_task_selector_recycler_item,
-                    parent,
-                    false
-                )
-                EditTaskSelectorItemViewHoldet(itemView)
-            }
-            else -> error("Invalid view type for view holder.!.")
+            // selector
+
+            else -> error("Invalid view type for view holder!")
         }
     }
 
@@ -57,7 +49,21 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 	    holder: EditTaskItemViewHolder,
 	    position: Int
     ) {
-        TODO("Not yet implemented")
+        holder.bind(items[position])
+    }
+
+    override fun onBindViewHolder(
+        holder: EditTaskItemViewHolder,
+        position: Int,
+        payloads: List<Any?>
+    ) {
+        if (payloads.isEmpty()) {
+            onBindViewHolder(holder, position)
+        } else {
+            payloads.forEach { payload ->
+                holder.bind(items[position], payload)
+            }
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -66,7 +72,7 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
         return when (items[position]) {
             is EditTaskButtonItem -> EditActionItemType.BUTTON
             is EditTaskSelectorItem -> EditActionItemType.SELECTOR
-            else -> error("Invalid item for view type.!.")
+            else -> error("Invalid item for view type!")
         }
     }
 }

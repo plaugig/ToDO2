@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.plaugig.todo2.domain.MainInteractor
+import com.plaugig.todo2.domain.main.MainInteractor
 import com.plaugig.todo2.ui.fragments.main.days.item.DayItemState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
