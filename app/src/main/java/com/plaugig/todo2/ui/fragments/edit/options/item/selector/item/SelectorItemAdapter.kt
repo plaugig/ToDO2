@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 
 class SelectorItemAdapter(
-    private var items: List<SelectorItemData>
+    private var items: List<SelectorItemData> ,
+    /*private val visibleCount : Int*/
 ): RecyclerView.Adapter<SelectorItemViewHolder>(){
 
         var currentItems = items.toList()
@@ -28,6 +29,13 @@ class SelectorItemAdapter(
             parent,
             false
         )
+
+       /* itemView.post {
+            val layoutParams = itemView.layoutParams
+            layoutParams.width = parent.width / visibleCount
+            itemView.layoutParams = layoutParams
+        }*/
+
         return SelectorItemViewHolder(itemView)
     }
 
@@ -36,6 +44,12 @@ class SelectorItemAdapter(
         position: Int
     ) {
         holder.bind(currentItems[position])
+/*
+        val recycler = holder.itemView.findViewById<RecyclerView>(R.id.recycler)
+
+        if (recycler.itemDecorationCount == 0){
+            recycler.addItemDecoration(SelectorItemDecoration(holder.itemView.context))
+        }*/
     }
 
     override fun onBindViewHolder(

@@ -37,6 +37,11 @@ class EditTaskFragment : Fragment() {
         val adapter = EditTaskAdapter()
 
         binding.taskOptions.adapter = adapter
+        binding.taskOptions.addItemDecoration(EditItemDecoration(requireContext()))
+
+        binding.toolBar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
