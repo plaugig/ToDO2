@@ -15,7 +15,7 @@ class SelectorItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView
         binding.selector.text = item.title
         binding.selectorIndicator.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(
-                binding.root.context, item.collor
+                binding.root.context, item.color
             )
         )
 
@@ -28,7 +28,7 @@ class SelectorItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView
             binding.selector.text = item.title
              binding.selectorIndicator.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(
-                binding.root.context, item.collor
+                binding.root.context, item.color
             )
         )
 

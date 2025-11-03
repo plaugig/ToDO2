@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 
 class SelectorItemDecoration(context: Context): RecyclerView.ItemDecoration() {
-    private val ofsetXS = context.resources.getDimension(R.dimen.offset_xs ).toInt()
+    private val ofsetXS = context.resources.getDimension(R.dimen.offset_s ).toInt()
 
     override fun getItemOffsets(
         outRect: Rect,

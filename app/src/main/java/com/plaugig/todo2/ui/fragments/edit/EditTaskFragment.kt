@@ -37,7 +37,9 @@ class EditTaskFragment : Fragment() {
         val adapter = EditTaskAdapter()
 
         binding.taskOptions.adapter = adapter
-        binding.taskOptions.addItemDecoration(EditItemDecoration(requireContext()))
+        binding.taskOptions.addItemDecoration(
+            EditItemDecoration(requireContext())
+        )
 
         binding.toolBar.setNavigationOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()

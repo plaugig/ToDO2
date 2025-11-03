@@ -1,7 +1,6 @@
 package com.plaugig.todo2.ui.fragments.edit.options.item.selector.item
 
 import androidx.recyclerview.widget.DiffUtil
-import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 
 class SelectorItemDiffUtil(
     private val oldItems: List<SelectorItemData>,
@@ -29,7 +28,7 @@ class SelectorItemDiffUtil(
         val newItem = newItems[newItemPosition]
 
         return oldItem.title == newItem.title
-                && oldItem.collor == newItem.collor
+                && oldItem.color == newItem.color
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {

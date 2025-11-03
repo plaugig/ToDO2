@@ -5,5 +5,5 @@ import androidx.annotation.ColorRes
 data class SelectorItemData(
     val id: Int,
     val title: String,
-    @ColorRes val collor: Int
+    @ColorRes val color: Int
 )

@@ -11,7 +11,7 @@ import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHol
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
-import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItemViewHoldet
+import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItemViewHolder
 
 class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 
@@ -46,7 +46,7 @@ class EditTaskAdapter() : RecyclerView.Adapter<EditTaskItemViewHolder>() {
                     parent,
                     false
                 )
-                EditTaskSelectorItemViewHoldet(itemView)
+                EditTaskSelectorItemViewHolder(itemView)
             }
 
             else -> error("Invalid view type for view holder.!.")
