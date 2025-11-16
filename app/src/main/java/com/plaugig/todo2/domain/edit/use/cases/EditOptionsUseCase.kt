@@ -5,6 +5,7 @@ import com.plaugig.todo2.data.database.dao.TasksDao
 import com.plaugig.todo2.data.database.entities.TaskEntity
 import com.plaugig.todo2.data.task.repository.TaskRepository
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemData
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemData
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
@@ -21,10 +23,6 @@ import javax.inject.Inject
 class EditOptionsUseCase @Inject constructor(
 	private val repository: TaskRepository
 ) {
-
-	operator fun invoke(taskId: Int): Flow<TaskEntity> {
-		return repository.getTaskById(taskId)
-	}
 
 	fun getOptions(): Flow<List<EditTaskItem>> {
 		return flowOf(
@@ -43,11 +41,13 @@ class EditOptionsUseCase @Inject constructor(
 							25,
 							"Hard",
 							R.color.red
-						),SelectorItemData(
+						),
+						SelectorItemData(
 							42,
 							"Medium",
 							R.color.basic_color
-						),SelectorItemData(
+						),
+						SelectorItemData(
 							23,
 							"Ez",
 							R.color.purple
@@ -58,4 +58,15 @@ class EditOptionsUseCase @Inject constructor(
 			)
 		).flowOn(Dispatchers.IO).distinctUntilChanged()
 	}
+
+	fun getTask(taskId: Int) : Flow<EditTaskItemData> {
+		return repository.getTaskById(taskId = taskId).map { task ->
+			EditTaskItemData(
+				id = task.id,
+				title = task.name,
+				description = task.description
+			)
+		}
+	}
 }
+

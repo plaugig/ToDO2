@@ -79,16 +79,15 @@ class EditTaskFragment : Fragment() {
             insets
         }
 
-        viewModel.loadTask(taskId)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.taskFlow.collect { task ->
-
-                    binding.titleText.setText(task.name)
-                    binding.descriptionText.setText(task.description)
+                viewModel.taskDataState.collect { task ->
+                    task?.let {
+                        binding.titleText.setText(it.title)
+                        binding.descriptionText.setText(it.description)
+                    }
                 }
-            }
+
         }
 
     }

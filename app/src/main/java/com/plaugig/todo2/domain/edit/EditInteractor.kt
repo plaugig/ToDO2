@@ -3,6 +3,7 @@ package com.plaugig.todo2.domain.edit
 import com.plaugig.todo2.data.database.entities.TaskEntity
 import com.plaugig.todo2.domain.edit.use.cases.EditOptionsUseCase
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
+import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemData
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class EditInteractor @Inject constructor(
 		return editOptionsUseCase.getOptions()
 	}
 
-	fun getTask(taskId: Int): Flow<TaskEntity> {
-		return editOptionsUseCase(taskId)
+	fun getTask(taskId: Int): Flow<EditTaskItemData> {
+		return editOptionsUseCase.getTask(taskId)
 	}
 }

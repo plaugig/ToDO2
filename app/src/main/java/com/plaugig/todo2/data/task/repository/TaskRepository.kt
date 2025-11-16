@@ -12,8 +12,7 @@ import javax.inject.Inject
  * Created by George on 10/19/25.
  */
 class TaskRepository @Inject constructor(
-    private val localDataSource: LocalTaskDataSource,
-    private val dao: TasksDao
+    private val localDataSource: LocalTaskDataSource
 ) {
 
     fun getAllTask(): Flow<List<TaskData>> {
@@ -46,7 +45,14 @@ class TaskRepository @Inject constructor(
         )
     }
 
-    fun getTaskById(taskId: Int): Flow<TaskEntity> {
-        return dao.getTaskById(taskId)
+    fun getTaskById(taskId: Int): Flow<TaskData> {
+        return localDataSource.getTaskById(taskId).map { entity ->
+                TaskData(
+                    id = entity.id,
+                    name = entity.name,
+                    description = entity.description,
+                    isCompleted = entity.isCompleted
+                )
+            }
+        }
     }
-}
