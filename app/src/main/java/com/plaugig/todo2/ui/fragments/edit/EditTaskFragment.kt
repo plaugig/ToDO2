@@ -24,6 +24,24 @@ class EditTaskFragment : Fragment() {
 
     private val viewModel by viewModels<EditTaskViewModel>()
 
+    companion object {
+        private const val idTask = "taskId"
+
+        fun newInstance(taskId: Int): EditTaskFragment {
+            val fragment = EditTaskFragment()
+            val bundle = Bundle()
+            bundle.putInt(idTask, taskId)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+    private var taskId: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        taskId = arguments?.getInt(idTask) ?: 0
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +77,18 @@ class EditTaskFragment : Fragment() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        viewModel.loadTask(taskId)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.taskFlow.collect { task ->
+
+                    binding.titleText.setText(task.name)
+                    binding.descriptionText.setText(task.description)
+                }
+            }
         }
 
     }

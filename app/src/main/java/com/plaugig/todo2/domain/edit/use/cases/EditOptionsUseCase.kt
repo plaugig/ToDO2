@@ -1,6 +1,9 @@
 package com.plaugig.todo2.domain.edit.use.cases
 
 import com.plaugig.todo2.R
+import com.plaugig.todo2.data.database.dao.TasksDao
+import com.plaugig.todo2.data.database.entities.TaskEntity
+import com.plaugig.todo2.data.task.repository.TaskRepository
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
@@ -15,7 +18,13 @@ import javax.inject.Inject
 /**
  * Created by George on 10/25/25.
  */
-class EditOptionsUseCase @Inject constructor() {
+class EditOptionsUseCase @Inject constructor(
+	private val repository: TaskRepository
+) {
+
+	operator fun invoke(taskId: Int): Flow<TaskEntity> {
+		return repository.getTaskById(taskId)
+	}
 
 	fun getOptions(): Flow<List<EditTaskItem>> {
 		return flowOf(

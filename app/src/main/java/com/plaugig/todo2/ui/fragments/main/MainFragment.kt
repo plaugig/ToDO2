@@ -99,7 +99,7 @@ class MainFragment : Fragment() {
 	private fun openTask(id: Int) {
 		parentFragmentManager
 			.beginTransaction()
-			.replace(android.R.id.content, EditTaskFragment() )
+			.replace(android.R.id.content, EditTaskFragment.newInstance(id) )
 			.addToBackStack(null)
 			.commit()
 	}

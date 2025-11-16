@@ -15,7 +15,7 @@ class TasksUseCase @Inject constructor(
 ) {
 
 	fun getTasks(): Flow<List<TaskItemData>> {
-		return repository.getTasks().map { tasks ->
+		return repository.getAllTask().map { tasks ->
 			tasks.map { task ->
 				TaskItemData(
 					id = task.id,
