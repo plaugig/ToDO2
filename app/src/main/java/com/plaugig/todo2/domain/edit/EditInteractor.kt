@@ -19,7 +19,7 @@ class EditInteractor @Inject constructor(
 		return editOptionsUseCase.getOptions()
 	}
 
-	fun getTask(taskId: Int): Flow<EditTaskScreenState> {
+	fun getTask(taskId: Int): Flow<EditTaskScreenState?> {
 		return tasksUseCase.getTask(taskId)
 	}
 

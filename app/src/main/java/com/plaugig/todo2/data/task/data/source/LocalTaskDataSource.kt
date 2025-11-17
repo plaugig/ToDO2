@@ -33,7 +33,7 @@ class LocalTaskDataSource @Inject constructor(
 		)
 	}
 
-	fun getTaskById(taskId: Int): Flow<TaskEntity> {
+	fun getTaskById(taskId: Int): Flow<TaskEntity?> {
 		return database.tasksDao().getTaskById(taskId = taskId)
 			.distinctUntilChanged()
 			.flowOn(Dispatchers.IO)

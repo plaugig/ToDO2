@@ -31,13 +31,15 @@ class TasksUseCase @Inject constructor(
 		}
 	}
 
-	fun getTask(taskId: Int) : Flow<EditTaskScreenState> {
+	fun getTask(taskId: Int) : Flow<EditTaskScreenState?> {
 		return repository.getTaskById(taskId = taskId).map { task ->
-            EditTaskScreenState(
-                id = task.id,
-                title = task.name,
-                description = task.description
-            )
+			task?.let {
+				EditTaskScreenState(
+				id = task.id,
+				title = task.name,
+				description = task.description
+			) }
+
 		}.flowOn(Dispatchers.IO).distinctUntilChanged()
 	}
 

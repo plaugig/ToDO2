@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.plaugig.todo2.databinding.FragmentRedactTaskBinding
 import com.plaugig.todo2.ui.fragments.edit.options.EditTaskAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -93,9 +94,11 @@ class EditTaskFragment : Fragment() {
         }
 
 
-        binding.deleteButton.setOnClickListener { view ->
+        binding.deleteButton.setOnClickListener {
             viewModel.onDeliteTask(taskId)
             parentFragmentManager.popBackStack()
+
+
         }
 
     }

@@ -45,14 +45,17 @@ class TaskRepository @Inject constructor(
         )
     }
 
-    fun getTaskById(taskId: Int): Flow<TaskData> {
+    fun getTaskById(taskId: Int): Flow<TaskData?> {
         return localDataSource.getTaskById(taskId).map { entity ->
+            entity?.let {
                 TaskData(
                     id = entity.id,
                     name = entity.name,
                     description = entity.description,
                     isCompleted = entity.isCompleted
                 )
+            }
+
             }
         }
     }
