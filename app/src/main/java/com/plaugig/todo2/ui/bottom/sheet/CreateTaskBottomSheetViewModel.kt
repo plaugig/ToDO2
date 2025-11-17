@@ -2,7 +2,7 @@ package com.plaugig.todo2.ui.bottom.sheet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.plaugig.todo2.domain.main.use.cases.TasksUseCase
+import com.plaugig.todo2.domain.task.use.cases.TasksUseCase
 import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
