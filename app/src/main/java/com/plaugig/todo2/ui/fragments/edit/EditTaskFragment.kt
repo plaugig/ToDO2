@@ -11,13 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.plaugig.todo2.databinding.FragmentRedactTaskBinding
 import com.plaugig.todo2.ui.fragments.edit.options.EditTaskAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.core.widget.addTextChangedListener
 
 @AndroidEntryPoint
 class EditTaskFragment : Fragment() {
@@ -95,10 +93,21 @@ class EditTaskFragment : Fragment() {
 
 
         binding.deleteButton.setOnClickListener {
-            viewModel.onDeliteTask(taskId)
+            viewModel.onDeleteTask(taskId)
             parentFragmentManager.popBackStack()
+        }
 
+        binding.titleText.addTextChangedListener{ text ->
+            viewModel.setTitle(text.toString())
+        }
 
+        binding.descriptionText.addTextChangedListener { text ->
+            viewModel.setDescription(text.toString())
+        }
+
+        binding.saveButton.setOnClickListener {
+            viewModel.save()
+            parentFragmentManager.popBackStack()
         }
 
     }

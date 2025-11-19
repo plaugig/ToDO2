@@ -31,7 +31,7 @@ class TasksUseCase @Inject constructor(
 		}
 	}
 
-	fun getTask(taskId: Int) : Flow<EditTaskScreenState?> {
+	fun getTaskById(taskId: Int) : Flow<EditTaskScreenState?> {
 		return repository.getTaskById(taskId = taskId).map { task ->
 			task?.let {
 				EditTaskScreenState(
