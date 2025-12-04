@@ -25,25 +25,6 @@ class EditTaskFragment : Fragment() {
 
     private val viewModel by viewModels<EditTaskViewModel>()
 
-    companion object {
-        private const val idTask = "taskId"
-
-        fun newInstance(taskId: Int): EditTaskFragment {
-            val fragment = EditTaskFragment()
-            val bundle = Bundle()
-            bundle.putInt(idTask, taskId)
-            fragment.arguments = bundle
-            return fragment
-        }
-    }
-
-    private var taskId: Int = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        taskId = arguments?.getInt(idTask) ?: 0
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -91,9 +72,8 @@ class EditTaskFragment : Fragment() {
 
         }
 
-
         binding.deleteButton.setOnClickListener {
-            viewModel.onDeleteTask(taskId)
+            viewModel.onDeleteTask()
             parentFragmentManager.popBackStack()
         }
 
@@ -110,5 +90,16 @@ class EditTaskFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+    }
+    companion object {
+        const val TASK_ID = "task_id"
+
+        fun newInstance(taskId: Int): EditTaskFragment {
+            val fragment = EditTaskFragment()
+            val bundle = Bundle()
+            bundle.putInt(TASK_ID, taskId)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

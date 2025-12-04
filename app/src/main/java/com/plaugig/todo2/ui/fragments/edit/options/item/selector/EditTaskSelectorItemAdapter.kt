@@ -5,11 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
+import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemData
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemDiffUtil
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemViewHolder
 
-class EditTaskSelectorItemAdapter() : RecyclerView.Adapter<SelectorItemViewHolder>() {
+class EditTaskSelectorItemAdapter(
+    private val onItemClicked: (itemEnum: OptionsPriorityType?) -> Unit
+) : RecyclerView.Adapter<SelectorItemViewHolder>() {
 
     var items = emptyList<SelectorItemData>()
         set(value) {
@@ -31,7 +34,7 @@ class EditTaskSelectorItemAdapter() : RecyclerView.Adapter<SelectorItemViewHolde
             false
         )
 
-        return SelectorItemViewHolder(itemView)
+        return SelectorItemViewHolder(itemView, onItemClicked)
     }
 
     override fun onBindViewHolder(

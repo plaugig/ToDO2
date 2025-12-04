@@ -3,15 +3,19 @@ package com.plaugig.todo2.ui.fragments.edit.options.item.selector
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.plaugig.todo2.databinding.EditTaskSelectorRecyclerItemBinding
+import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHolder
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorItemDecoration
 
-class EditTaskSelectorItemViewHolder (itemView : View) : EditTaskItemViewHolder(itemView){
+class EditTaskSelectorItemViewHolder (
+    itemView : View,
+    private val onPrioritySelected: (OptionsPriorityType?) -> Unit
+) : EditTaskItemViewHolder(itemView){
 
     private val binding = EditTaskSelectorRecyclerItemBinding.bind(itemView)
 
-    private val adapter = EditTaskSelectorItemAdapter()
+    private var adapter = EditTaskSelectorItemAdapter(onItemClicked = onPrioritySelected)
 
     override fun bind(item: EditTaskItem) {
         item as EditTaskSelectorItem
@@ -24,6 +28,11 @@ class EditTaskSelectorItemViewHolder (itemView : View) : EditTaskItemViewHolder(
             false
         )
         adapter.items = item.items
+
+        val editTaskSelectorItemAdapter = EditTaskSelectorItemAdapter { selectedPriority ->
+            onPrioritySelected(selectedPriority)
+        }
+        adapter = editTaskSelectorItemAdapter
     }
 
     override fun bind(

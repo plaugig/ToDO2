@@ -25,7 +25,8 @@ class TasksUseCase @Inject constructor(
                     id = task.id,
                     name = task.name,
                     description = task.description,
-                    isCompleted = task.isCompleted
+                    isCompleted = task.isCompleted,
+                    priority = task.priority
                 )
 			}
 		}
@@ -49,7 +50,8 @@ class TasksUseCase @Inject constructor(
                 id = task.id,
                 name = task.name,
                 description = task.description,
-                isCompleted = task.isCompleted
+                isCompleted = task.isCompleted,
+                priority = task.priority
             )
 		)
 	}

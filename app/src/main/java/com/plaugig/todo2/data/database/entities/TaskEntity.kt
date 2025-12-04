@@ -15,5 +15,7 @@ data class TaskEntity(
 	@ColumnInfo(name = "description")
 	val description: String,
 	@ColumnInfo(name = "is_completed")
-	val isCompleted: Boolean
+	val isCompleted: Boolean,
+    @ColumnInfo(name = "priority")
+    val priority: Int?
 )

@@ -23,4 +23,7 @@ interface TasksDao {
 
 	@Query("SELECT * FROM tasks WHERE id = :taskId")
 	fun getTaskById(taskId: Int): Flow<TaskEntity?>
+
+    @Query("UPDATE tasks SET is_completed = :isCompleted WHERE id = :id")
+    fun setIsCompleted(id: Int, isCompleted: Boolean)
 }

@@ -1,9 +1,9 @@
 package com.plaugig.todo2.data.task.repository
 
-import com.plaugig.todo2.data.database.dao.TasksDao
 import com.plaugig.todo2.data.database.entities.TaskEntity
 import com.plaugig.todo2.data.task.TaskData
 import com.plaugig.todo2.data.task.data.source.LocalTaskDataSource
+import com.plaugig.todo2.domain.options.priority.OptionsPriorityTypeMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -12,7 +12,8 @@ import javax.inject.Inject
  * Created by George on 10/19/25.
  */
 class TaskRepository @Inject constructor(
-    private val localDataSource: LocalTaskDataSource
+    private val localDataSource: LocalTaskDataSource,
+    private val priorityMapper: OptionsPriorityTypeMapper
 ) {
 
     fun getAllTask(): Flow<List<TaskData>> {
@@ -22,7 +23,8 @@ class TaskRepository @Inject constructor(
                     id = entity.id,
                     name = entity.name,
                     description = entity.description,
-                    isCompleted = entity.isCompleted
+                    isCompleted = entity.isCompleted,
+                    priority = priorityMapper.mapReverse(entity.priority)
                 )
             }
         }
@@ -34,7 +36,8 @@ class TaskRepository @Inject constructor(
                 id = task.id,
                 name = task.name,
                 description = task.description,
-                isCompleted = task.isCompleted
+                isCompleted = task.isCompleted,
+                priority = priorityMapper.map(task.priority)
             )
         )
     }
@@ -52,7 +55,8 @@ class TaskRepository @Inject constructor(
                     id = entity.id,
                     name = entity.name,
                     description = entity.description,
-                    isCompleted = entity.isCompleted
+                    isCompleted = entity.isCompleted,
+                    priority = priorityMapper.mapReverse(entity.priority)
                 )
             }
 

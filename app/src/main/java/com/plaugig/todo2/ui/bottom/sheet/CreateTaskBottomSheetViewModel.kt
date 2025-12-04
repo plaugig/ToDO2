@@ -2,6 +2,7 @@ package com.plaugig.todo2.ui.bottom.sheet
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 import com.plaugig.todo2.domain.task.use.cases.TasksUseCase
 import com.plaugig.todo2.ui.fragments.main.task.item.TaskItemData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +19,7 @@ class CreateTaskBottomSheetViewModel @Inject constructor(
     private val titleState = MutableStateFlow("")
     private val descriptionState = MutableStateFlow("")
 
+
     fun setTitle(title: String) = viewModelScope.launch(Dispatchers.IO) {
         titleState.emit(title)
     }
@@ -33,7 +35,8 @@ class CreateTaskBottomSheetViewModel @Inject constructor(
                 id = (0..10000000).random(),
                 name = titleState.value,
                 description = descriptionState.value,
-                isCompleted = false
+                isCompleted = false,
+                priority = null
             )
         )
     }

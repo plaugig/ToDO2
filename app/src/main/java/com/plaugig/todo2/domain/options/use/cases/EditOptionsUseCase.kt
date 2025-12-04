@@ -2,6 +2,7 @@ package com.plaugig.todo2.domain.options.use.cases
 
 import com.plaugig.todo2.R
 import com.plaugig.todo2.data.task.repository.TaskRepository
+import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.button.EditTaskButtonItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItem
@@ -11,17 +12,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
  * Created by George on 10/25/25.
  */
 class EditOptionsUseCase @Inject constructor(
-	private val repository: TaskRepository
+    private val repository: TaskRepository
 ) {
 
-	fun getOptions(): Flow<List<EditTaskItem>> {
-		return flowOf(
+    fun getOptions(): Flow<List<EditTaskItem>> {
+        return repository.getTaskById(0).map { task ->
             listOf(
                 EditTaskButtonItem(
                     title = "Reminder",
@@ -34,26 +36,32 @@ class EditOptionsUseCase @Inject constructor(
                 EditTaskSelectorItem(
                     listOf(
                         SelectorItemData(
-                            25,
-                            "Hard",
-                            R.color.red
+                            id = 0,
+                            title = "Hard",
+                            color = R.color.red,
+                            priority = OptionsPriorityType.Hard,
+                            isSelected = task?.priority == OptionsPriorityType.Hard
                         ),
                         SelectorItemData(
-                            42,
-                            "Medium",
-                            R.color.basic_color
+                            id = 1,
+                            title = "Medium",
+                            color = R.color.basic_color,
+                            priority = OptionsPriorityType.Medium,
+                            isSelected = task?.priority == OptionsPriorityType.Medium
                         ),
                         SelectorItemData(
-                            23,
-                            "Ez",
-                            R.color.purple
+                            id = 2,
+                            title = "Ez",
+                            color = R.color.purple,
+                            priority = OptionsPriorityType.Ez,
+                            isSelected = task?.priority == OptionsPriorityType.Ez
                         ),
                     )
 
                 ),
             )
-        ).flowOn(Dispatchers.IO).distinctUntilChanged()
-	}
+        }.flowOn(Dispatchers.IO).distinctUntilChanged()
+    }
 
 
 }
