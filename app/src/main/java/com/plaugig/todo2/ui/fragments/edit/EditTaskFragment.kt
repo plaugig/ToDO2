@@ -39,9 +39,7 @@ class EditTaskFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = EditTaskAdapter{ selectedPriority ->
-            viewModel.updatePriority(selectedPriority)
-        }
+        val adapter = EditTaskAdapter(viewModel)
 
         binding.taskOptions.adapter = adapter
         binding.taskOptions.addItemDecoration(

@@ -17,7 +17,7 @@ class SelectorItemDiffUtil(
         val oldItem = oldItems[oldItemPosition]
         val newItem = newItems[newItemPosition]
 
-        return oldItem.id == newItem.id
+        return oldItem.type == newItem.type
     }
 
     override fun areContentsTheSame(

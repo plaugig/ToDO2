@@ -10,7 +10,6 @@ import com.plaugig.todo2.ui.fragments.edit.options.item.selector.item.SelectorIt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -36,24 +35,21 @@ class EditOptionsUseCase @Inject constructor(
                 EditTaskSelectorItem(
                     listOf(
                         SelectorItemData(
-                            id = 0,
+                            type = OptionsPriorityType.Hard,
                             title = "Hard",
                             color = R.color.red,
-                            priority = OptionsPriorityType.Hard,
                             isSelected = task?.priority == OptionsPriorityType.Hard
                         ),
                         SelectorItemData(
-                            id = 1,
+                            type = OptionsPriorityType.Medium,
                             title = "Medium",
                             color = R.color.yellow,
-                            priority = OptionsPriorityType.Medium,
                             isSelected = task?.priority == OptionsPriorityType.Medium
                         ),
                         SelectorItemData(
-                            id = 2,
+                            type = OptionsPriorityType.Ez,
                             title = "Ez",
                             color = R.color.purple,
-                            priority = OptionsPriorityType.Ez,
                             isSelected = task?.priority == OptionsPriorityType.Ez
                         ),
                     )

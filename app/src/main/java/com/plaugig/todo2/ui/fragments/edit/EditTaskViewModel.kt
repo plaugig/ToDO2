@@ -27,7 +27,7 @@ import javax.inject.Inject
 class EditTaskViewModel @Inject constructor(
     private val interactor: EditInteractor,
     savedStateHandle: SavedStateHandle
-) : ViewModel() {
+) : ViewModel(), EditTaskListener {
 
     private val taskId: Int = savedStateHandle.get<Int>(TASK_ID)!!
     private val _descriptionState = MutableStateFlow("")
@@ -43,7 +43,7 @@ class EditTaskViewModel @Inject constructor(
         listItems.map { item ->
             if (item is EditTaskSelectorItem) {
                 val newButtonList = item.items.map { button ->
-                    button.copy(isSelected = button.priority == currentPriority)
+                    button.copy(isSelected = button.type == currentPriority)
                 }
                 item.copy(items = newButtonList)
             } else{
@@ -98,5 +98,9 @@ class EditTaskViewModel @Inject constructor(
 
     fun updatePriority(newPriority: OptionsPriorityType?) = viewModelScope.launch(Dispatchers.IO){
         priorityState.emit(newPriority)
+    }
+
+    override fun onPrioritySelected(priority: OptionsPriorityType) {
+
     }
 }

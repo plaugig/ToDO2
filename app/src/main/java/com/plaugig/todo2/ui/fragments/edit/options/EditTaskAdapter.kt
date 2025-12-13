@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.R
 import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
+import com.plaugig.todo2.ui.fragments.edit.EditTaskListener
 import com.plaugig.todo2.ui.fragments.edit.options.item.EditTaskItemDiffUtil
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItem
 import com.plaugig.todo2.ui.fragments.edit.options.item.base.EditTaskItemViewHolder
@@ -15,7 +16,7 @@ import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelecto
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItemViewHolder
 
 class EditTaskAdapter(
-    private val onItemClicked: (OptionsPriorityType?) -> Unit
+    private val listener: EditTaskListener
 ) : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 
     var items = emptyList<EditTaskItem>()
@@ -49,7 +50,7 @@ class EditTaskAdapter(
                     parent,
                     false
                 )
-                EditTaskSelectorItemViewHolder(itemView, onItemClicked)
+                EditTaskSelectorItemViewHolder(itemView, listener)
             }
 
             else -> error("Invalid view type for view holder.!.")

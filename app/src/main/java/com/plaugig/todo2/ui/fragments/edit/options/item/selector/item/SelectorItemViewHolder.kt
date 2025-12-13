@@ -6,10 +6,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.databinding.EditTaskSelectorItemBinding
 import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
+import com.plaugig.todo2.ui.fragments.edit.EditTaskListener
 
 class SelectorItemViewHolder(
     itemView: View,
-    private val onItemClicked: (OptionsPriorityType?) -> Unit
+    private val listener: EditTaskListener
 ) : RecyclerView.ViewHolder(itemView) {
 
     private var binding = EditTaskSelectorItemBinding.bind(itemView)
@@ -25,7 +26,7 @@ class SelectorItemViewHolder(
         binding.prirority.isSelected = item.isSelected
 
         binding.prirority.setOnClickListener {
-            onItemClicked(item.priority)
+            listener.onPrioritySelected(item.type)
         }
     }
 

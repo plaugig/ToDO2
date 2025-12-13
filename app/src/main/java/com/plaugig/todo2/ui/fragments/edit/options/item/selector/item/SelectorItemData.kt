@@ -4,9 +4,8 @@ import androidx.annotation.ColorRes
 import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 
 data class SelectorItemData(
-    val id: Int,
+    val type: OptionsPriorityType,
     val title: String,
     @ColorRes val color: Int,
-    val priority: OptionsPriorityType?,
     val isSelected: Boolean
 )
