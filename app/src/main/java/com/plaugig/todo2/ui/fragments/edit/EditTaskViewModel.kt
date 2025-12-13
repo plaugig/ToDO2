@@ -16,7 +16,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,33 +32,34 @@ class EditTaskViewModel @Inject constructor(
 ) : ViewModel(), EditTaskListener {
 
     private val taskId: Int = savedStateHandle.get<Int>(TASK_ID)!!
+
     private val _descriptionState = MutableStateFlow("")
     val descriptionState: StateFlow<String> = _descriptionState.asStateFlow()
+
     private val _titleState = MutableStateFlow("")
     val titleState: StateFlow<String> = _titleState.asStateFlow()
+
     private var priorityState = MutableStateFlow<OptionsPriorityType?>(null)
+
 
     val options = combine(
         interactor.getOptions(),
         priorityState
-    ){ listItems, currentPriority ->
+    ) { listItems, currentPriority ->
         listItems.map { item ->
             if (item is EditTaskSelectorItem) {
-                val newButtonList = item.items.map { button ->
-                    button.copy(isSelected = button.type == currentPriority)
-                }
-                item.copy(items = newButtonList)
-            } else{
+                item.copy(
+                    items = item.items.map { button ->
+                        button.copy(
+                            isSelected = button.type == currentPriority
+                        )
+                    }
+                )
+            } else {
                 item
             }
         }
-
-
-    } .stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5000),
-        initialValue = emptyList()
-    )
+    }
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -87,20 +90,24 @@ class EditTaskViewModel @Inject constructor(
     fun save() = viewModelScope.launch(Dispatchers.IO) {
         interactor.addTask(
             task = TaskItemData(
-                description = _descriptionState.value,
-                name = _titleState.value,
-                isCompleted = false,
                 id = taskId,
+                name = _titleState.value,
+                description = _descriptionState.value,
+                isCompleted = false, // TODO: Replace with real value
                 priority = priorityState.value
             )
         )
     }
 
-    fun updatePriority(newPriority: OptionsPriorityType?) = viewModelScope.launch(Dispatchers.IO){
-        priorityState.emit(newPriority)
-    }
-
     override fun onPrioritySelected(priority: OptionsPriorityType) {
-
+        viewModelScope.launch {
+            priorityState.update { currentPriority ->
+                if (currentPriority == priority) {
+                    null
+                } else {
+                    priority
+                }
+            }
+        }
     }
 }

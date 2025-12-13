@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1"
-    app:background="@drawable/background_selector">
+    app:cardBackgroundColor="@color/card_bg_selector">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

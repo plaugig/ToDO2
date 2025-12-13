@@ -33,6 +33,13 @@ class SelectorItemDiffUtil(
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
-        return super.getChangePayload(oldItemPosition, newItemPosition)
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+
+        return SelectorItemPayload(
+            isTitleChanged = oldItem.title != newItem.title,
+            isColorChanged = oldItem.color != newItem.color,
+            isSelectionChanged = oldItem.isSelected != newItem.isSelected
+        )
     }
 }

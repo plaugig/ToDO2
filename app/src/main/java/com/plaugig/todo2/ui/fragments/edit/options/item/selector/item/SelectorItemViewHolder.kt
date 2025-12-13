@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.plaugig.todo2.databinding.EditTaskSelectorItemBinding
-import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 import com.plaugig.todo2.ui.fragments.edit.EditTaskListener
 
 class SelectorItemViewHolder(
@@ -45,7 +44,7 @@ class SelectorItemViewHolder(
             )
         }
 
-        if (payload.isSelected) {
+        if (payload.isSelectionChanged) {
             binding.prirority.isSelected = item.isSelected
         }
     }
