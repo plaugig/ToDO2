@@ -15,12 +15,12 @@ import javax.inject.Inject
  * Created by George on 9/14/25.
  */
 class TasksUseCase @Inject constructor(
-	private val repository: TaskRepository
+    private val repository: TaskRepository
 ) {
 
-	fun getTasks(): Flow<List<TaskItemData>> {
-		return repository.getAllTask().map { tasks ->
-			tasks.map { task ->
+    fun getTasks(): Flow<List<TaskItemData>> {
+        return repository.getAllTask().map { tasks ->
+            tasks.map { task ->
                 TaskItemData(
                     id = task.id,
                     name = task.name,
@@ -28,36 +28,39 @@ class TasksUseCase @Inject constructor(
                     isCompleted = task.isCompleted,
                     priority = task.priority
                 )
-			}
-		}
-	}
+            }
+        }
+    }
 
-	fun getTaskById(taskId: Int) : Flow<EditTaskScreenState?> {
-		return repository.getTaskById(taskId = taskId).map { task ->
-			task?.let {
-				EditTaskScreenState(
-				id = task.id,
-				title = task.name,
-				description = task.description
-			) }
+    fun getTaskById(taskId: Int): Flow<EditTaskScreenState?> {
+        return repository.getTaskById(taskId = taskId).map { task ->
+            task?.let {
+                EditTaskScreenState(
+                    id = task.id,
+                    title = task.name,
+                    description = task.description,
+                    priority = task.priority
 
-		}.flowOn(Dispatchers.IO).distinctUntilChanged()
-	}
+                )
+            }
 
-	suspend fun addTask(task: TaskItemData) {
-		repository.addTask(
-			task = TaskData(
+        }.flowOn(Dispatchers.IO).distinctUntilChanged()
+    }
+
+    suspend fun addTask(task: TaskItemData) {
+        repository.addTask(
+            task = TaskData(
                 id = task.id,
                 name = task.name,
                 description = task.description,
                 isCompleted = task.isCompleted,
                 priority = task.priority
             )
-		)
-	}
+        )
+    }
 
-	suspend fun deleteTaskById(id: Int) {
-		repository.deleteTaskById(id)
-	}
+    suspend fun deleteTaskById(id: Int) {
+        repository.deleteTaskById(id)
+    }
 
 }

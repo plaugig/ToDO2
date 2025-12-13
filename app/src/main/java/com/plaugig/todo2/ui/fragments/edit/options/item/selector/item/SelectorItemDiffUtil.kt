@@ -29,6 +29,7 @@ class SelectorItemDiffUtil(
 
         return oldItem.title == newItem.title
                 && oldItem.color == newItem.color
+                && oldItem.isSelected == newItem.isSelected
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {

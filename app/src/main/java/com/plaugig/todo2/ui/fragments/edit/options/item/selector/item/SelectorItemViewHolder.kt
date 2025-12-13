@@ -49,6 +49,8 @@ class SelectorItemViewHolder(
             )
         }
 
+        binding.prirority.isSelected = item.isSelected
+
 
     }
 

@@ -15,7 +15,7 @@ import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelecto
 import com.plaugig.todo2.ui.fragments.edit.options.item.selector.EditTaskSelectorItemViewHolder
 
 class EditTaskAdapter(
-    private val onItemClicked: (itemEnum: OptionsPriorityType?) -> Unit
+    private val onItemClicked: (OptionsPriorityType?) -> Unit
 ) : RecyclerView.Adapter<EditTaskItemViewHolder>() {
 
     var items = emptyList<EditTaskItem>()

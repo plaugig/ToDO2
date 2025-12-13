@@ -45,7 +45,7 @@ class EditOptionsUseCase @Inject constructor(
                         SelectorItemData(
                             id = 1,
                             title = "Medium",
-                            color = R.color.basic_color,
+                            color = R.color.yellow,
                             priority = OptionsPriorityType.Medium,
                             isSelected = task?.priority == OptionsPriorityType.Medium
                         ),

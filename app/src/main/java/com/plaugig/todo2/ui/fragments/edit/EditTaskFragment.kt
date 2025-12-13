@@ -16,6 +16,7 @@ import com.plaugig.todo2.ui.fragments.edit.options.EditTaskAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import androidx.core.widget.addTextChangedListener
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class EditTaskFragment : Fragment() {
@@ -29,12 +30,18 @@ class EditTaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRedactTaskBinding.inflate(inflater, container, false)
+        _binding = FragmentRedactTaskBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = EditTaskAdapter()
+        val adapter = EditTaskAdapter{ selectedPriority ->
+            viewModel.updatePriority(selectedPriority)
+        }
 
         binding.taskOptions.adapter = adapter
         binding.taskOptions.addItemDecoration(
@@ -63,16 +70,25 @@ class EditTaskFragment : Fragment() {
 
 
         viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.taskDataState.collect { task ->
-                    task?.let {
-                        binding.titleText.setText(it.title)
-                        binding.descriptionText.setText(it.description)
-                    }
+            viewModel.titleState.collectLatest { title ->
+               if (binding.titleText.text.toString() != title){
+                   binding.titleText.setText(title)
+               }
+            }
+
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.descriptionState.collectLatest { description ->
+                if (binding.descriptionText.text.toString() != description){
+                    binding.descriptionText.setText(description)
                 }
+            }
 
         }
 
         binding.deleteButton.setOnClickListener {
+
             viewModel.onDeleteTask()
             parentFragmentManager.popBackStack()
         }

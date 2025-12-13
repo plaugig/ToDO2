@@ -30,6 +30,7 @@ class TaskDiffUtil(
         return oldItem.name == newItem.name
                 && oldItem.description == newItem.description
                 && oldItem.isCompleted == newItem.isCompleted
+                && oldItem.priority == newItem.priority
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
@@ -39,7 +40,8 @@ class TaskDiffUtil(
         return TaskItemStatePayload (
             isNameChanged = oldItem.name != newItem.name,
             isTextChanged = oldItem.description != newItem.description,
-            isDoneStateChanged = oldItem.isCompleted != newItem.isCompleted
+            isDoneStateChanged = oldItem.isCompleted != newItem.isCompleted,
+            isPriorityChanged = oldItem.priority != newItem.priority
         )
     }
 }

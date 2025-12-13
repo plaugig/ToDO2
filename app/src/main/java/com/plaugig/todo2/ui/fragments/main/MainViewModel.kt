@@ -18,87 +18,84 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MainViewModel @Inject constructor(
-	private val interactor: MainInteractor
+    private val interactor: MainInteractor
 ) : ViewModel(), MainEventListener {
 
-	val state = interactor.getState()
+    val state = interactor.getState()
 
-	private val _days = MutableLiveData<List<DayItemState>>(
-		listOf(
-			DayItemState(
-				id = 1,
-				nameOfDay = "Mon",
-				numberOfDay = "25"
+    private val _days = MutableLiveData<List<DayItemState>>(
+        listOf(
+            DayItemState(
+                id = 1,
+                nameOfDay = "Mon",
+                numberOfDay = "25"
 
-			),
-			DayItemState(
-				id = 2,
-				nameOfDay = "Tue",
-				numberOfDay = "26"
-			),
-			DayItemState(
-				id = 3,
-				nameOfDay = "Wed",
-				numberOfDay = "27"
-			),
-			DayItemState(
-				id = 4,
-				nameOfDay = "Thu",
-				numberOfDay = "28"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-			DayItemState(
-				id = 5,
-				nameOfDay = "Fri",
-				numberOfDay = "29"
-			),
-		)
-	)
-	val days: LiveData<List<DayItemState>> get() = _days
+            ),
+            DayItemState(
+                id = 2,
+                nameOfDay = "Tue",
+                numberOfDay = "26"
+            ),
+            DayItemState(
+                id = 3,
+                nameOfDay = "Wed",
+                numberOfDay = "27"
+            ),
+            DayItemState(
+                id = 4,
+                nameOfDay = "Thu",
+                numberOfDay = "28"
+            ),
+            DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),
+            DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),
+            DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),
+            DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),
+            DayItemState(
+                id = 5,
+                nameOfDay = "Fri",
+                numberOfDay = "29"
+            ),
+        )
+    )
+    val days: LiveData<List<DayItemState>> get() = _days
 
-	private val _uiActions = MutableSharedFlow<MainFragmentUiAction>()
-	val uiActions: SharedFlow<MainFragmentUiAction> get() = _uiActions
-
-
-	override fun onDeleteTask(id: Int) {
-		viewModelScope.launch(Dispatchers.IO) {
-			interactor.deleteTaskById(id)
-		}
-	}
-
-	override fun onOpenTask(id: Int) {
-		viewModelScope.launch {
-			_uiActions.emit(
-				MainFragmentUiAction.OpenTask(
-					id = id
-				)
-			)
-
-		}
+    private val _uiActions = MutableSharedFlow<MainFragmentUiAction>()
+    val uiActions: SharedFlow<MainFragmentUiAction> get() = _uiActions
 
 
-	}
+    override fun onDeleteTask(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            interactor.deleteTaskById(id)
+        }
+    }
 
-	override fun onTaskDone(id: Int, isDone: Boolean) {
-		println("FUCK: Task is done: $id")
-	}
+    override fun onOpenTask(id: Int) {
+        viewModelScope.launch {
+            _uiActions.emit(
+                MainFragmentUiAction.OpenTask(
+                    id = id
+                )
+            )
+        }
+    }
+
+    override fun onTaskDone(id: Int, isDone: Boolean) {
+        println("FUCK: Task is done: $id")
+    }
 }
