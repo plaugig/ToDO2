@@ -9,16 +9,13 @@ import com.plaugig.todo2.domain.options.priority.OptionsPriorityType
 
 class SelectorItemViewHolder(
     itemView: View,
-    private val onItemClicked: (OptionsPriorityType?) -> Unit) : RecyclerView.ViewHolder(itemView) {
-
-
+    private val onItemClicked: (OptionsPriorityType?) -> Unit
+) : RecyclerView.ViewHolder(itemView) {
 
     private var binding = EditTaskSelectorItemBinding.bind(itemView)
 
-    fun bind(
-        item: SelectorItemData
-    ) {
 
+    fun bind(item: SelectorItemData) {
         binding.selector.text = item.title
         binding.selectorIndicator.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(
@@ -30,7 +27,6 @@ class SelectorItemViewHolder(
         binding.prirority.setOnClickListener {
             onItemClicked(item.priority)
         }
-
     }
 
     fun bind(item: SelectorItemData, payload: Any?) {
@@ -38,7 +34,6 @@ class SelectorItemViewHolder(
 
         if (payload.isTitleChanged) {
             binding.selector.text = item.title
-
         }
 
         if (payload.isColorChanged) {
@@ -49,9 +44,8 @@ class SelectorItemViewHolder(
             )
         }
 
-        binding.prirority.isSelected = item.isSelected
-
-
+        if (payload.isSelected) {
+            binding.prirority.isSelected = item.isSelected
+        }
     }
-
 }
